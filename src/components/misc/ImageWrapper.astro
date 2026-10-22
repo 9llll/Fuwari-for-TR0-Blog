@@ -49,18 +49,24 @@ const imageStyle = `object-position: ${position}`;
 ---
 <div id={id} class:list={[className, 'overflow-hidden relative']}>
     <!-- 加载占位符 -->
-    <div class="image-loading absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700 z-10">
-        <div class="loading-spinner w-8 h-8 border-2 border-gray-300 dark:border-gray-600 border-t-blue-500 rounded-full animate-spin"></div>
+    <div class="image-loading absolute inset-0 flex items-center justify-center z-10"
+         style="background: linear-gradient(135deg,
+            oklch(0.88 0.06 var(--hue) / 0.3),
+            oklch(0.82 0.09 calc(var(--hue) + 25) / 0.24));">
+        <div class="loading-spinner w-8 h-8 border-2 rounded-full animate-spin"
+             style="border-color: oklch(0.75 0.08 var(--hue) / 0.3); border-top-color: oklch(0.6 0.12 var(--hue) / 0.7);"></div>
     </div>
-    
-    <!-- 错误占位符 -->
-    <div class="image-error absolute inset-0 flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-700 z-10" style="display: none;">
-        <svg class="w-12 h-12 text-gray-400 dark:text-gray-500 mb-2" fill="currentColor" viewBox="0 0 24 24">
+
+    <!-- 错误占位符：渐变底 + 淡色图标，避免生硬的「图片加载失败」文字 -->
+    <div class="image-error absolute inset-0 flex flex-col items-center justify-center z-10" style="display: none;
+        background: linear-gradient(135deg,
+            oklch(0.88 0.06 var(--hue) / 0.35),
+            oklch(0.82 0.09 calc(var(--hue) + 25) / 0.28));">
+        <svg class="w-10 h-10" style="color: oklch(0.62 0.08 var(--hue) / 0.6);" fill="currentColor" viewBox="0 0 24 24">
             <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
         </svg>
-        <span class="text-xs text-gray-500 dark:text-gray-400">图片加载失败</span>
     </div>
-    
+
     <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>
     
     {isLocal && img && (

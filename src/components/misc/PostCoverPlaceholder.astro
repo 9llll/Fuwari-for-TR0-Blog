@@ -1,0 +1,92 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	class?: string;
+	/** 文章标题，用于生成稳定的占位配色与首字 */
+	title: string;
+	/** 分类名，用于选择图标 */
+	category?: string;
+	/** 是否为加密资源（加密下载 → 锁图标） */
+	encrypted?: boolean;
+}
+
+const { class: className, title, category, encrypted = false } = Astro.props;
+
+// 依据标题生成稳定的色相偏移，让不同文章的占位封面有区分度，
+// 同时保持整体在同一色系内（不会花）。
+const hash = Array.from(title).reduce(
+	(acc, ch) => (acc * 31 + ch.charCodeAt(0)) % 360,
+	0,
+);
+const hueOffset = hash % 40; // 0-39 的偏移，落在相近色相区间
+
+// 图标优先级：加密资源 > 分类关键词 > 通用文章
+const ICON_RULES: { match: RegExp; icon: string }[] = [
+	{
+		match: /加密|下载|资源|影视|软件|游戏|工具/,
+		icon: "material-symbols:download-rounded",
+	},
+	{
+		match: /教程|指南|攻略|教程|使用|howto|guide/i,
+		icon: "material-symbols:menu-book-rounded",
+	},
+	{
+		match: /配置|部署|建站|运维|开发|代码|编程/i,
+		icon: "material-symbols:terminal-rounded",
+	},
+	{ match: /新闻|公告|通知|记录/i, icon: "material-symbols:campaign-rounded" },
+];
+
+const catText = (category || "").trim();
+const iconName = encrypted
+	? "material-symbols:lock"
+	: (ICON_RULES.find((r) => r.match.test(catText))?.icon ??
+		"material-symbols:article-rounded");
+
+// 取标题首个非空白字符作为大字
+const initial = (title || "文").trim().charAt(0) || "文";
+---
+
+<div
+	class:list={[
+		"post-cover-placeholder relative w-full h-full overflow-hidden",
+		"flex items-center justify-center select-none",
+		className,
+	]}
+	style={`--cover-hue-offset: ${hueOffset};`}
+>
+	<!-- 渐变底色 -->
+	<div
+		class="absolute inset-0"
+		style="background: linear-gradient(135deg,
+			oklch(0.88 0.06 calc(var(--hue) + var(--cover-hue-offset)) / 0.55),
+			oklch(0.82 0.09 calc(var(--hue) + var(--cover-hue-offset) + 25) / 0.45));"
+	>
+	</div>
+
+	<!-- 装饰圆环 -->
+	<div
+		class="absolute rounded-full"
+		style="width: 140%; aspect-ratio: 1; right: -35%; top: -55%;
+			background: radial-gradient(circle, oklch(0.95 0.04 calc(var(--hue) + var(--cover-hue-offset) + 40) / 0.5), transparent 62%);"
+	>
+	</div>
+
+	<!-- 主体：图标 + 首字 -->
+	<div class="relative z-10 flex flex-col items-center justify-center h-full w-full">
+		<!-- 首字作为背景装饰 -->
+		<span
+			class="absolute text-[5.5rem] sm:text-[6.5rem] font-black leading-none select-none"
+			style="color: oklch(0.55 0.12 calc(var(--hue) + var(--cover-hue-offset)) / 0.16);"
+		>
+			{initial}
+		</span>
+		<!-- 图标前景 -->
+		<Icon
+			name={iconName}
+			class="relative w-8 h-8 sm:w-9 sm:h-9"
+			style="color: oklch(0.48 0.12 calc(var(--hue) + var(--cover-hue-offset)));"
+		/>
+	</div>
+</div>
