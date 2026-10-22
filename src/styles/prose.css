@@ -62,28 +62,52 @@
     @apply rounded-lg;
 }
 
-/* 表格：窄屏时允许横向滚动，避免单元格被挤压换行。
-   用 display:block 让表格自身成为滚动容器（宽屏再切回 table 布局）。 */
+/* 表格：窄屏时单元格内容自动换行，保证所有列完整可见，无需横向滑动。
+   - table-layout: auto 让浏览器按内容分配列宽
+   - 首列（通常是属性名）保持不换行，其余列允许折行
+   - 行内代码允许断行，避免长串把表格撑破 */
 .prose table {
     @apply w-full border-collapse mb-4;
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-}
-
-@media (min-width: 700px) {
-    .prose table {
-        display: table;
-        white-space: normal;
-    }
+    table-layout: auto;
 }
 
 .prose th,
 .prose td {
     @apply border border-neutral-300 dark:border-neutral-600 px-3 py-2;
+    vertical-align: top;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .prose th {
     @apply bg-neutral-100 dark:bg-neutral-800 font-semibold;
+}
+
+/* 表格内的行内代码：允许在窄屏断行 */
+.prose td code,
+.prose th code {
+    @apply whitespace-normal break-all;
+    overflow-wrap: anywhere;
+}
+
+/* 首列（属性名）保持不换行，避免 "title" 被折成两行。
+   Tailwind Typography 给 .prose 内的单元格与 code 都设了 white-space: normal，
+   需要 !important 才能覆盖。 */
+.prose table th:first-child,
+.prose table td:first-child,
+.prose table th:first-child code,
+.prose table td:first-child code {
+    white-space: nowrap !important;
+}
+
+@media (max-width: 700px) {
+    .prose table {
+        @apply text-[0.8rem];
+    }
+
+    .prose th,
+    .prose td {
+        @apply px-2 py-1.5;
+    }
+
 }
