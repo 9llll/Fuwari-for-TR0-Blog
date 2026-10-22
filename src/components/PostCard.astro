@@ -78,7 +78,7 @@ const articleId = extractArticleId(url);
       class="relative rounded-lg overflow-hidden"
       style="aspect-ratio: 8/5;"
     >
-      {pinned && <div class="absolute top-2 right-2 text-[#FF5722] z-20">
+      {pinned && <div class="absolute top-2 right-2 text-[var(--primary)] z-20">
           <Icon name="material-symbols:keep-outline" class="w-8 h-8" />
       </div>}
       <a href={url} aria-label={title} class="block h-full w-full group">
