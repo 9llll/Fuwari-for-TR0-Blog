@@ -55,4 +55,7 @@ export const th: Translation = {
 	[Key.badgeEncrypted]: "ดาวน์โหลดแบบเข้ารหัส",
 	[Key.badgeFree]: "ดาวน์โหลดฟรี",
 	[Key.badgeTutorial]: "บทความสอน",
+
+	/* Post badge */
+	[Key.tableOfContents]: "สารบัญ",
 };

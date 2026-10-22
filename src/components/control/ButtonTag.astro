@@ -4,10 +4,12 @@ interface Props {
 	dot?: boolean;
 	href?: string;
 	label?: string;
+	class?: string;
 }
 const { dot, href, label }: Props = Astro.props;
+const className = Astro.props.class;
 ---
-<a href={href} aria-label={label} class="btn-regular h-8 text-sm px-3 rounded-lg">
+<a href={href} aria-label={label} class:list={["btn-regular h-8 text-sm px-3 rounded-lg", className]}>
     {dot && <div class="h-1 w-1 bg-[var(--btn-content)] dark:bg-[var(--card-bg)] transition rounded-md mr-2"></div>}
     <slot></slot>
 </a>

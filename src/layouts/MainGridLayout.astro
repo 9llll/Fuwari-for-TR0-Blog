@@ -125,25 +125,8 @@ let links: NavBarLink[] = navBarConfig.links.map(
     </div>
 </div>
 
-<!-- The things that should be under the banner, only the TOC for now -->
-<div class="absolute w-full z-0 hidden 2xl:block">
-    <div class="relative max-w-[var(--page-width)] mx-auto">
-        <!-- TOC component -->
-        {siteConfig.toc.enable && <div id="toc-wrapper" class:list={["hidden lg:block transition absolute top-0 -right-[var(--toc-width)] w-[var(--toc-width)] items-center",
-            {"toc-hide": siteConfig.banner.enable}]}
-        >
-            <div id="toc-inner-wrapper" class="fixed top-14 w-[var(--toc-width)] h-[calc(100vh_-_20rem)] overflow-y-scroll overflow-x-hidden hide-scrollbar">
-                <div id="toc" class="w-full h-full">
-                    <div class="h-8 w-full"></div>
-                    <TOC headings={headings}></TOC>
-                    <div class="h-8 w-full"></div>
-                </div>
-            </div>
-        </div>}
-
-        {!siteConfig.toc.enable && <div id="toc"></div>}
-    </div>
-</div>
+<!-- 文章目录已移至左侧栏（个人信息下方），此处仅保留空容器以兼容脚本 -->
+<div id="toc-wrapper" class="hidden"></div>
 
 <!-- 全局侧边栏菜单 -->
 <NavMenuPanel links={links}></NavMenuPanel>

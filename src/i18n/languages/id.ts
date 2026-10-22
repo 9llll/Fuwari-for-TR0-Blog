@@ -56,4 +56,7 @@ export const id: Translation = {
 	[Key.badgeEncrypted]: "Unduhan terenkripsi",
 	[Key.badgeFree]: "Unduhan gratis",
 	[Key.badgeTutorial]: "Artikel tutorial",
+
+	/* Post badge */
+	[Key.tableOfContents]: "Daftar Isi",
 };

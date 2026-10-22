@@ -56,4 +56,7 @@ export const tr: Translation = {
 	[Key.badgeEncrypted]: "Şifreli indirme",
 	[Key.badgeFree]: "Ücretsiz indirme",
 	[Key.badgeTutorial]: "Öğretici makale",
+
+	/* Post badge */
+	[Key.tableOfContents]: "İçindekiler",
 };

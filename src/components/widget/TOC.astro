@@ -1,7 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
 import { siteConfig } from "../../config";
-import { url } from "../../utils/url-utils";
 
 interface Props {
 	class?: string;
@@ -16,7 +15,10 @@ for (const heading of headings) {
 }
 
 const className = Astro.props.class;
-const isPostsRoute = Astro.url.pathname.startsWith(url("/posts/"));
+
+// Fuwari 的文章路由是 /[...slug]（如 /cs/），不是 /posts/，
+// 因此不能用路径前缀判断是否为文章页——改为「有标题就渲染」。
+const hasHeadings = headings.length > 0;
 
 const removeTailingHash = (text: string) => {
 	let lastIndexOfHash = text.lastIndexOf("#");
@@ -31,7 +33,7 @@ let heading1Count = 1;
 
 const maxLevel = siteConfig.toc.depth;
 ---
-{isPostsRoute &&
+{hasHeadings &&
 <table-of-contents class:list={[className, "group"]}>
     {headings.filter((heading) => heading.depth < minDepth + maxLevel).map((heading) =>
             <a href={`#${heading.slug}`} class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
@@ -49,9 +51,9 @@ const maxLevel = siteConfig.toc.depth;
                     {heading.depth == minDepth + 1 && <div class="transition w-2 h-2 rounded-[0.1875rem] bg-[var(--toc-badge-bg)]"></div>}
                     {heading.depth == minDepth + 2 && <div class="transition w-1.5 h-1.5 rounded-sm bg-black/5 dark:bg-white/10"></div>}
                 </div>
-                <div class:list={["transition text-sm", {
-                    "text-50": heading.depth == minDepth || heading.depth == minDepth + 1,
-                    "text-30": heading.depth == minDepth + 2,
+                <div class:list={["transition text-sm min-w-0 break-words", {
+                    "text-75": heading.depth == minDepth || heading.depth == minDepth + 1,
+                    "text-50": heading.depth == minDepth + 2,
                 }]}>{removeTailingHash(heading.text)}</div>
             </a>
     )}
@@ -81,12 +83,20 @@ class TableOfContents extends HTMLElement {
 
     markVisibleSection = (entries: IntersectionObserverEntry[]) => {
         entries.forEach((entry) => {
-            const id = entry.target.children[0]?.getAttribute("id");
+            // remark-sectionize 会生成嵌套 section（H2 的 section 内含 H3 的 section），
+            // 父子 section 可能同时与视口相交。父 section 内部包含子 section，
+            // 因此只把「不含子 section 的最内层 section」视为独立章节，
+            // 否则整列目录都会同时高亮。
+            const section = entry.target as HTMLElement;
+            const hasChildSection = section.querySelector(":scope > section") !== null;
+            if (hasChildSection) return;
+
+            const id = section.children[0]?.getAttribute("id");
             const idx = id ? this.headingIdxMap.get(id) : undefined;
             if (idx != undefined)
                 this.active[idx] = entry.isIntersecting;
 
-            if (entry.isIntersecting && this.anchorNavTarget == entry.target.firstChild)
+            if (entry.isIntersecting && this.anchorNavTarget == section.firstChild)
                 this.anchorNavTarget = null;
         });
 
@@ -163,14 +173,22 @@ class TableOfContents extends HTMLElement {
     fallback = () => {
         if (!this.sections.length) return;
 
+        // 只高亮「当前所在」的章节：取第一个与视口有交集的 section。
+        // 若多个 section 同时在视口内（短文章/快速滚动），也只标记第一个，
+        // 否则目录会整列高亮，失去指示当前位置的意义。
         for (let i = 0; i < this.sections.length; i++) {
-            let offsetTop = this.sections[i].getBoundingClientRect().top;
-            let offsetBottom = this.sections[i].getBoundingClientRect().bottom;
+            const section = this.sections[i] as HTMLElement;
+            // 跳过含子 section 的父级，只取最内层 section 作为独立章节
+            if (section.querySelector(":scope > section") !== null) continue;
+
+            let offsetTop = section.getBoundingClientRect().top;
+            let offsetBottom = section.getBoundingClientRect().bottom;
 
             if (this.isInRange(offsetTop, 0, window.innerHeight)
                 || this.isInRange(offsetBottom, 0, window.innerHeight)
-                || (offsetTop < 0 && offsetBottom > window.innerHeight)) {                    
+                || (offsetTop < 0 && offsetBottom > window.innerHeight)) {
                 this.markActiveHeading(i);
+                break;
             }
             else if (offsetTop > window.innerHeight) break;
         }

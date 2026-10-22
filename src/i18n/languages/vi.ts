@@ -56,4 +56,7 @@ export const vi: Translation = {
 	[Key.badgeEncrypted]: "Tải xuống có mã hóa",
 	[Key.badgeFree]: "Tải xuống miễn phí",
 	[Key.badgeTutorial]: "Bài hướng dẫn",
+
+	/* Post badge */
+	[Key.tableOfContents]: "Mục lục",
 };

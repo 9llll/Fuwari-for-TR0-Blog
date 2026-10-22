@@ -55,4 +55,7 @@ export const zh_TW: Translation = {
 	[Key.badgeEncrypted]: "加密下載",
 	[Key.badgeFree]: "免費下載",
 	[Key.badgeTutorial]: "教學文章",
+
+	/* Post badge */
+	[Key.tableOfContents]: "文章目錄",
 };

@@ -52,6 +52,9 @@ enum I18nKey {
 	badgeEncrypted = "badgeEncrypted",
 	badgeFree = "badgeFree",
 	badgeTutorial = "badgeTutorial",
+
+	/* Table of contents */
+	tableOfContents = "tableOfContents",
 }
 
 export default I18nKey;

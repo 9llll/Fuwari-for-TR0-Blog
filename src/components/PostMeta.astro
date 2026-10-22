@@ -3,7 +3,7 @@ import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { formatDateToYYYYMMDD } from "../utils/date-utils";
 import { getCategoryUrl, getTagUrl } from "../utils/url-utils";
-import { Icon } from "astro-icon/components";
+import ButtonTag from "./control/ButtonTag.astro";
 
 interface Props {
 	class?: string;
@@ -13,6 +13,8 @@ interface Props {
 	category: string[];
 	hideTagsForMobile?: boolean;
 	hideUpdateDate?: boolean;
+	/** 是否显示标签（文章页显示，列表页因侧边栏已有标签云而关闭） */
+	showTags?: boolean;
 	articleId?: string | null;
 }
 const {
@@ -21,10 +23,14 @@ const {
 	tags,
 	category,
 	hideTagsForMobile = false,
-	hideUpdateDate = false,
+	hideUpdateDate = true,
+	showTags = false,
 	articleId,
 } = Astro.props;
 const className = Astro.props.class;
+
+// 过滤空标签
+const visibleTags = (tags || []).filter((t) => t && t.trim() !== "");
 ---
 
 <div class:list={["flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2", className]}>    
@@ -43,4 +49,21 @@ const className = Astro.props.class;
             </a>
         </div>
     </div>
+
+    <!-- tags -->
+    {showTags && visibleTags.length > 0 && (
+        <div class="flex items-center">
+            <div class="flex flex-row flex-wrap items-center gap-1.5">
+                {visibleTags.map((tag) => (
+                    <ButtonTag
+                        href={getTagUrl(tag)}
+                        label={`View all posts with the ${tag.trim()} tag`}
+                        class="text-xs"
+                    >
+                        {tag.trim()}
+                    </ButtonTag>
+                ))}
+            </div>
+        </div>
+    )}
 </div>

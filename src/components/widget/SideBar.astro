@@ -1,8 +1,12 @@
 ---
 import type { MarkdownHeading } from "astro";
+import I18nKey from "../../i18n/i18nKey";
+import { i18n } from "../../i18n/translation";
 import Categories from "./Categories.astro";
 import Profile from "./Profile.astro";
 import Tag from "./Tags.astro";
+import TOC from "./TOC.astro";
+import WidgetLayout from "./WidgetLayout.astro";
 
 interface Props {
 	class?: string;
@@ -10,10 +14,28 @@ interface Props {
 }
 
 const className = Astro.props.class;
+const headings = Astro.props.headings || [];
+
+// 有标题层级时才显示目录
+const hasHeadings = headings.length > 0;
 ---
+
 <div id="sidebar" class:list={[className, "w-full hidden lg:block"]}>
     <div class="flex flex-col w-full gap-4 mb-4">
         <Profile></Profile>
+
+        <!-- 文章目录：位于个人信息下方 -->
+        {hasHeadings && (
+            <div id="sidebar-toc" class="onload-animation" style="animation-delay: 100ms">
+                <WidgetLayout name={i18n(I18nKey.tableOfContents)} id="toc">
+                    <div id="toc-inner-wrapper" class="max-h-[calc(100vh-28rem)] overflow-y-auto overflow-x-hidden hide-scrollbar">
+                        <div id="toc" class="w-full">
+                            <TOC headings={headings}></TOC>
+                        </div>
+                    </div>
+                </WidgetLayout>
+            </div>
+        )}
     </div>
     <div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4">
         <Categories class="onload-animation" style="animation-delay: 150ms"></Categories>

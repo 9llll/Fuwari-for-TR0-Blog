@@ -56,4 +56,7 @@ export const ko: Translation = {
 	[Key.badgeEncrypted]: "암호화 다운로드",
 	[Key.badgeFree]: "무료 다운로드",
 	[Key.badgeTutorial]: "튜토리얼 글",
+
+	/* Post badge */
+	[Key.tableOfContents]: "목차",
 };

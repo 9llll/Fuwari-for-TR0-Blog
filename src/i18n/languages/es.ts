@@ -56,4 +56,7 @@ export const es: Translation = {
 	[Key.badgeEncrypted]: "Descarga cifrada",
 	[Key.badgeFree]: "Descarga gratuita",
 	[Key.badgeTutorial]: "Artículo tutorial",
+
+	/* Post badge */
+	[Key.tableOfContents]: "Tabla de contenidos",
 };

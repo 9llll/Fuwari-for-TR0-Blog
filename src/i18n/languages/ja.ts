@@ -56,4 +56,7 @@ export const ja: Translation = {
 	[Key.badgeEncrypted]: "暗号化ダウンロード",
 	[Key.badgeFree]: "無料ダウンロード",
 	[Key.badgeTutorial]: "チュートリアル記事",
+
+	/* Post badge */
+	[Key.tableOfContents]: "目次",
 };
