@@ -35,4 +35,20 @@ export const id: Translation = {
 	[Key.author]: "Penulis",
 	[Key.publishedAt]: "Diterbitkan pada",
 	[Key.license]: "Lisensi",
+
+	/* Download widget */
+	[Key.downloadAction]: "Unduh",
+	[Key.downloadSource]: "Sumber",
+	[Key.downloadLocked]: "Terenkripsi",
+	[Key.downloadCode]: "Kode",
+	[Key.downloadCodeCopied]: "Tersalin",
+	[Key.downloadCodeCopyHint]: "Klik untuk menyalin kode: {code}",
+	[Key.downloadUnlockTitle]: "Diperlukan kata sandi",
+	[Key.downloadUnlockDesc]:
+		"Sumber daya ini terenkripsi. Masukkan kata sandi untuk melanjutkan.",
+	[Key.passwordPlaceholder]: "Masukkan kata sandi",
+	[Key.passwordHint]: "Petunjuk",
+	[Key.downloadUnlockSubmit]: "Konfirmasi",
+	[Key.downloadCancel]: "Batal",
+	[Key.downloadUnlockError]: "Kata sandi salah",
 };

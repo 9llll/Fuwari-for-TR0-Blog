@@ -35,4 +35,19 @@ export const zh_TW: Translation = {
 	[Key.author]: "作者",
 	[Key.publishedAt]: "發佈於",
 	[Key.license]: "許可協議",
+
+	/* Download widget */
+	[Key.downloadAction]: "下載",
+	[Key.downloadSource]: "來源",
+	[Key.downloadLocked]: "加密",
+	[Key.downloadCode]: "提取碼",
+	[Key.downloadCodeCopied]: "已複製",
+	[Key.downloadCodeCopyHint]: "點擊複製提取碼：{code}",
+	[Key.downloadUnlockTitle]: "需要密碼",
+	[Key.downloadUnlockDesc]: "該資源已加密，請輸入密碼後繼續。",
+	[Key.passwordPlaceholder]: "請輸入密碼",
+	[Key.passwordHint]: "密碼提示",
+	[Key.downloadUnlockSubmit]: "確定",
+	[Key.downloadCancel]: "取消",
+	[Key.downloadUnlockError]: "密碼錯誤",
 };

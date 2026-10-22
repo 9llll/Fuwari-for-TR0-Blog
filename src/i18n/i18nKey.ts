@@ -32,6 +32,21 @@ enum I18nKey {
 	author = "author",
 	publishedAt = "publishedAt",
 	license = "license",
+
+	/* Download widget */
+	downloadAction = "downloadAction",
+	downloadSource = "downloadSource",
+	downloadLocked = "downloadLocked",
+	downloadCode = "downloadCode",
+	downloadCodeCopied = "downloadCodeCopied",
+	downloadCodeCopyHint = "downloadCodeCopyHint",
+	downloadUnlockTitle = "downloadUnlockTitle",
+	downloadUnlockDesc = "downloadUnlockDesc",
+	passwordPlaceholder = "passwordPlaceholder",
+	passwordHint = "passwordHint",
+	downloadUnlockSubmit = "downloadUnlockSubmit",
+	downloadCancel = "downloadCancel",
+	downloadUnlockError = "downloadUnlockError",
 }
 
 export default I18nKey;

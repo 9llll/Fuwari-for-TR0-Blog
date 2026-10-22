@@ -35,4 +35,19 @@ export const th: Translation = {
 	[Key.author]: "ผู้เขียน",
 	[Key.publishedAt]: "เผยแพร่เมื่อ",
 	[Key.license]: "สัญญาอนุญาต",
+
+	/* Download widget */
+	[Key.downloadAction]: "ดาวน์โหลด",
+	[Key.downloadSource]: "แหล่งที่มา",
+	[Key.downloadLocked]: "เข้ารหัส",
+	[Key.downloadCode]: "รหัส",
+	[Key.downloadCodeCopied]: "คัดลอกแล้ว",
+	[Key.downloadCodeCopyHint]: "คลิกเพื่อคัดลอกรหัส: {code}",
+	[Key.downloadUnlockTitle]: "ต้องการรหัสผ่าน",
+	[Key.downloadUnlockDesc]: "ทรัพยากรนี้ถูกเข้ารหัส กรุณากรอกรหัสผ่านเพื่อดำเนินการต่อ",
+	[Key.passwordPlaceholder]: "กรอกรหัสผ่าน",
+	[Key.passwordHint]: "คำใบ้",
+	[Key.downloadUnlockSubmit]: "ยืนยัน",
+	[Key.downloadCancel]: "ยกเลิก",
+	[Key.downloadUnlockError]: "รหัสผ่านไม่ถูกต้อง",
 };

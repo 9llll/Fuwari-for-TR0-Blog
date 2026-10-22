@@ -35,4 +35,20 @@ export const ja: Translation = {
 	[Key.author]: "作者",
 	[Key.publishedAt]: "公開日",
 	[Key.license]: "ライセンス",
+
+	/* Download widget */
+	[Key.downloadAction]: "ダウンロード",
+	[Key.downloadSource]: "出所",
+	[Key.downloadLocked]: "暗号化",
+	[Key.downloadCode]: "提取コード",
+	[Key.downloadCodeCopied]: "コピーしました",
+	[Key.downloadCodeCopyHint]: "クリックしてコードをコピー: {code}",
+	[Key.downloadUnlockTitle]: "パスワードが必要です",
+	[Key.downloadUnlockDesc]:
+		"このリソースは暗号化されています。続けるにはパスワードを入力してください。",
+	[Key.passwordPlaceholder]: "パスワードを入力",
+	[Key.passwordHint]: "ヒント",
+	[Key.downloadUnlockSubmit]: "確認",
+	[Key.downloadCancel]: "キャンセル",
+	[Key.downloadUnlockError]: "パスワードが違います",
 };

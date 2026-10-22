@@ -35,4 +35,20 @@ export const es: Translation = {
 	[Key.author]: "Autor",
 	[Key.publishedAt]: "Publicado el",
 	[Key.license]: "Licencia",
+
+	/* Download widget */
+	[Key.downloadAction]: "Descargar",
+	[Key.downloadSource]: "Fuente",
+	[Key.downloadLocked]: "Cifrado",
+	[Key.downloadCode]: "Código",
+	[Key.downloadCodeCopied]: "Copiado",
+	[Key.downloadCodeCopyHint]: "Haz clic para copiar el código: {code}",
+	[Key.downloadUnlockTitle]: "Se requiere contraseña",
+	[Key.downloadUnlockDesc]:
+		"Este recurso está cifrado. Introduce la contraseña para continuar.",
+	[Key.passwordPlaceholder]: "Introduce la contraseña",
+	[Key.passwordHint]: "Pista",
+	[Key.downloadUnlockSubmit]: "Confirmar",
+	[Key.downloadCancel]: "Cancelar",
+	[Key.downloadUnlockError]: "Contraseña incorrecta",
 };

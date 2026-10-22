@@ -35,4 +35,20 @@ export const vi: Translation = {
 	[Key.author]: "Tác giả",
 	[Key.publishedAt]: "Đăng vào lúc",
 	[Key.license]: "Giấy phép bản quyền",
+
+	/* Download widget */
+	[Key.downloadAction]: "Tải xuống",
+	[Key.downloadSource]: "Nguồn",
+	[Key.downloadLocked]: "Đã mã hóa",
+	[Key.downloadCode]: "Mã trích xuất",
+	[Key.downloadCodeCopied]: "Đã sao chép",
+	[Key.downloadCodeCopyHint]: "Nhấp để sao chép mã: {code}",
+	[Key.downloadUnlockTitle]: "Cần mật khẩu",
+	[Key.downloadUnlockDesc]:
+		"Tài nguyên này đã được mã hóa. Nhập mật khẩu để tiếp tục.",
+	[Key.passwordPlaceholder]: "Nhập mật khẩu",
+	[Key.passwordHint]: "Gợi ý",
+	[Key.downloadUnlockSubmit]: "Xác nhận",
+	[Key.downloadCancel]: "Hủy",
+	[Key.downloadUnlockError]: "Mật khẩu không đúng",
 };

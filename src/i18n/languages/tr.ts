@@ -35,4 +35,20 @@ export const tr: Translation = {
 	[Key.author]: "Yazar",
 	[Key.publishedAt]: "Yayınlanma:",
 	[Key.license]: "Lisans",
+
+	/* Download widget */
+	[Key.downloadAction]: "İndir",
+	[Key.downloadSource]: "Kaynak",
+	[Key.downloadLocked]: "Şifrelenmiş",
+	[Key.downloadCode]: "Kod",
+	[Key.downloadCodeCopied]: "Kopyalandı",
+	[Key.downloadCodeCopyHint]: "Kodu kopyalamak için tıklayın: {code}",
+	[Key.downloadUnlockTitle]: "Şifre gerekli",
+	[Key.downloadUnlockDesc]:
+		"Bu kaynak şifrelenmiştir. Devam etmek için şifreyi girin.",
+	[Key.passwordPlaceholder]: "Şifreyi girin",
+	[Key.passwordHint]: "İpucu",
+	[Key.downloadUnlockSubmit]: "Onayla",
+	[Key.downloadCancel]: "İptal",
+	[Key.downloadUnlockError]: "Şifre yanlış",
 };

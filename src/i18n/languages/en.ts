@@ -35,4 +35,20 @@ export const en: Translation = {
 	[Key.author]: "Author",
 	[Key.publishedAt]: "Published at",
 	[Key.license]: "License",
+
+	/* Download widget */
+	[Key.downloadAction]: "Download",
+	[Key.downloadSource]: "Source",
+	[Key.downloadLocked]: "Encrypted",
+	[Key.downloadCode]: "Code",
+	[Key.downloadCodeCopied]: "Copied",
+	[Key.downloadCodeCopyHint]: "Click to copy code: {code}",
+	[Key.downloadUnlockTitle]: "Password required",
+	[Key.downloadUnlockDesc]:
+		"This resource is encrypted. Enter the password to continue.",
+	[Key.passwordPlaceholder]: "Enter the password",
+	[Key.passwordHint]: "Hint",
+	[Key.downloadUnlockSubmit]: "Confirm",
+	[Key.downloadCancel]: "Cancel",
+	[Key.downloadUnlockError]: "Incorrect password",
 };

@@ -35,4 +35,20 @@ export const ko: Translation = {
 	[Key.author]: "저자",
 	[Key.publishedAt]: "게시일",
 	[Key.license]: "라이선스",
+
+	/* Download widget */
+	[Key.downloadAction]: "다운로드",
+	[Key.downloadSource]: "출처",
+	[Key.downloadLocked]: "암호화됨",
+	[Key.downloadCode]: "추출 코드",
+	[Key.downloadCodeCopied]: "복사됨",
+	[Key.downloadCodeCopyHint]: "클릭하여 코드 복사: {code}",
+	[Key.downloadUnlockTitle]: "비밀번호가 필요합니다",
+	[Key.downloadUnlockDesc]:
+		"이 리소스는 암호화되어 있습니다. 계속하려면 비밀번호를 입력하세요.",
+	[Key.passwordPlaceholder]: "비밀번호를 입력하세요",
+	[Key.passwordHint]: "힌트",
+	[Key.downloadUnlockSubmit]: "확인",
+	[Key.downloadCancel]: "취소",
+	[Key.downloadUnlockError]: "비밀번호가 틀렸습니다",
 };

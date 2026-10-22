@@ -1,0 +1,246 @@
+---
+/**
+ * 下载按钮的交互脚本（Fuwari 版）
+ *
+ * 以事件委托方式接管页面上所有 [data-dl-url] 按钮，因此正文里任意位置插入的
+ * ::download{...} 指令渲染出的按钮都能工作，整个页面只绑定一次。
+ *
+ * 密码保护：构建期把明文密码转成 SHA-256 哈希写入 data-dl-hash，
+ * 运行时用 WebCrypto 计算同样的哈希比对，明文密码不出现在任何输出文件中。
+ *
+ * 地址混淆：构建期把真实地址 Base64 编码写入 data-dl-url，
+ * 页面源码 / F12 Elements 中搜不到真实地址（点击瞬间 Network 面板仍可见）。
+ */
+---
+<script>
+const MODAL_ID = "fuwari-download-modal";
+const MAX_ATTEMPTS = 3;
+
+function toHex(buffer: ArrayBuffer): string {
+	return Array.prototype.map
+		.call(new Uint8Array(buffer), (b: number) => b.toString(16).padStart(2, "0"))
+		.join("");
+}
+
+async function sha256(text: string): Promise<string> {
+	const digest = await crypto.subtle.digest(
+		"SHA-256",
+		new TextEncoder().encode(text),
+	);
+	return toHex(digest);
+}
+
+/**
+ * 解码 data-dl-url 中 Base64 混淆的真实地址。
+ * 构建期把地址编码为 Base64（UTF-8），这里逆向还原。
+ */
+function decodeDownloadUrl(encoded: string): string {
+	if (!encoded) return "";
+	try {
+		const bytes = Uint8Array.from(atob(encoded), (c) => c.charCodeAt(0));
+		return new TextDecoder().decode(bytes);
+	} catch {
+		return "";
+	}
+}
+
+function removeModal() {
+	document.getElementById(MODAL_ID)?.remove();
+}
+
+function buildModal(): HTMLElement {
+	removeModal();
+	const modal = document.createElement("div");
+	modal.id = MODAL_ID;
+	modal.style.cssText =
+		"position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(0,0,0,.45);backdrop-filter:blur(2px)";
+	modal.innerHTML =
+		'<div class="card-base shadow-lg" style="max-width:26rem;width:100%;padding:1.5rem;border-radius:1rem">' +
+		'<div data-fd="title" style="font-weight:700;font-size:1.05rem;margin-bottom:.35rem"></div>' +
+		'<div data-fd="desc" style="font-size:.8rem;opacity:.65;margin-bottom:1rem"></div>' +
+		'<div data-fd="hint" style="font-size:.75rem;opacity:.6;margin-bottom:.6rem;display:none"></div>' +
+		'<input data-fd="input" type="password" autocomplete="off" style="width:100%;padding:.6rem .75rem;border-radius:.5rem;border:1px solid rgba(128,128,128,.35);background:transparent;color:inherit;outline:none" />' +
+		'<div data-fd="error" style="font-size:.75rem;color:#ef4440;margin-top:.5rem;display:none"></div>' +
+		'<div style="display:flex;gap:.6rem;margin-top:1.1rem;justify-content:flex-end">' +
+		'<button data-fd="cancel" type="button" style="padding:.5rem 1rem;border-radius:.5rem;font-size:.85rem;cursor:pointer;border:none"></button>' +
+		'<button data-fd="submit" type="button" style="padding:.5rem 1.1rem;border-radius:.5rem;font-size:.85rem;font-weight:600;cursor:pointer;border:none"></button>' +
+		"</div></div>";
+	document.body.appendChild(modal);
+	return modal;
+}
+
+/**
+ * 弹出密码框。resolve(密码) 表示用户提交，resolve(null) 表示取消。
+ */
+function askPassword(
+	btn: HTMLElement,
+	errorText: string,
+): Promise<string | null> {
+	return new Promise((resolve) => {
+		const modal = buildModal();
+		const q = (sel: string) =>
+			modal.querySelector(`[data-fd="${sel}"]`) as HTMLElement;
+		const title = q("title");
+		const desc = q("desc");
+		const hint = q("hint");
+		const input = q("input") as HTMLInputElement;
+		const error = q("error");
+		const cancel = q("cancel");
+		const submit = q("submit");
+
+		title.textContent = btn.dataset.dlTitle ?? "";
+		desc.textContent = btn.dataset.dlDesc ?? "";
+		input.placeholder = btn.dataset.dlPlaceholder ?? "";
+
+		if (btn.dataset.dlHint) {
+			hint.style.display = "block";
+			hint.textContent = `${btn.dataset.dlHintLabel ?? ""}: ${btn.dataset.dlHint}`;
+		}
+
+		if (errorText) {
+			error.style.display = "block";
+			error.textContent = errorText;
+		}
+
+		const primary =
+			getComputedStyle(document.documentElement)
+				.getPropertyValue("--primary")
+				.trim() || "#2563eb";
+		submit.style.background = primary;
+		submit.style.color = "#fff";
+		submit.textContent = btn.dataset.dlSubmit ?? "";
+		cancel.textContent = btn.dataset.dlCancel ?? "";
+		cancel.style.background = "rgba(128,128,128,.15)";
+		cancel.style.color = "inherit";
+
+		input.focus();
+
+		function finish(value: string | null) {
+			modal.removeEventListener("click", onBackdrop);
+			cancel.removeEventListener("click", onCancel);
+			submit.removeEventListener("click", onSubmit);
+			input.removeEventListener("keydown", onEnter);
+			document.removeEventListener("keydown", onEsc);
+			removeModal();
+			resolve(value);
+		}
+		function onBackdrop(e: Event) {
+			if (e.target === modal) finish(null);
+		}
+		function onCancel() {
+			finish(null);
+		}
+		function onSubmit() {
+			const value = input.value;
+			if (!value.trim()) return;
+			finish(value);
+		}
+		function onEnter(e: KeyboardEvent) {
+			if (e.key === "Enter") onSubmit();
+		}
+		function onEsc(e: KeyboardEvent) {
+			if (e.key === "Escape") finish(null);
+		}
+
+		modal.addEventListener("click", onBackdrop);
+		cancel.addEventListener("click", onCancel);
+		submit.addEventListener("click", onSubmit);
+		input.addEventListener("keydown", onEnter);
+		document.addEventListener("keydown", onEsc);
+	});
+}
+
+function startDownload(url: string, name: string) {
+	// 同源地址可以用 download 属性直接触发下载；
+	// 跨域地址浏览器会忽略 download 属性并直接导航离开本站，
+	// 因此改用新窗口打开，让用户仍停留在当前页面。
+	const a = document.createElement("a");
+	a.href = url;
+	a.rel = "noopener noreferrer";
+	try {
+		if (new URL(url, window.location.href).origin === window.location.origin) {
+			if (name) a.download = name;
+			document.body.appendChild(a);
+			a.click();
+			a.remove();
+			return;
+		}
+	} catch {
+		// URL 解析失败时退回新窗口
+	}
+	window.open(url, "_blank", "noopener,noreferrer");
+}
+
+/**
+ * 复制提取码到剪贴板，并把按钮文字临时替换为「已复制」提示。
+ */
+async function copyCode(btn: HTMLElement) {
+	const code = btn.dataset.dlCode;
+	if (!code) return;
+	try {
+		await navigator.clipboard.writeText(code);
+	} catch {
+		// 非安全上下文（http）下 clipboard API 不可用，退回 execCommand
+		const ta = document.createElement("textarea");
+		ta.value = code;
+		ta.style.position = "fixed";
+		ta.style.opacity = "0";
+		document.body.appendChild(ta);
+		ta.select();
+		// biome-ignore lint/suspicious/noDeprecated: 非安全上下文的剪贴板兜底方案
+		document.execCommand("copy");
+		ta.remove();
+	}
+
+	const text = btn.querySelector("[data-dl-code-text]");
+	if (!text) return;
+	const original = text.textContent ?? "";
+	text.textContent = btn.dataset.dlCodeCopied || original;
+	setTimeout(() => {
+		text.textContent = original;
+	}, 1600);
+}
+
+// 提取码复制（与下载按钮分开处理）
+document.addEventListener("click", (e) => {
+	const target = e.target as HTMLElement | null;
+	if (!target || typeof target.closest !== "function") return;
+	const btn = target.closest<HTMLElement>("[data-dl-code]");
+	if (!btn) return;
+	e.preventDefault();
+	e.stopPropagation();
+	void copyCode(btn);
+});
+
+document.addEventListener("click", async (e) => {
+	const target = e.target as HTMLElement | null;
+	if (!target || typeof target.closest !== "function") return;
+	const btn = target.closest<HTMLElement>("[data-dl-url]");
+	if (!btn) return;
+
+	const url = decodeDownloadUrl(btn.dataset.dlUrl ?? "");
+	if (!url) return;
+	e.preventDefault();
+
+	const hash = btn.dataset.dlHash;
+	const name = btn.dataset.dlName ?? "";
+
+	if (!hash) {
+		startDownload(url, name);
+		return;
+	}
+
+	for (let attempt = 0; attempt !== MAX_ATTEMPTS; attempt++) {
+		const input = await askPassword(
+			btn,
+			attempt > 0 ? (btn.dataset.dlError ?? "") : "",
+		);
+		if (input === null) return;
+
+		if ((await sha256(input.trim())) === hash) {
+			startDownload(url, name);
+			return;
+		}
+	}
+});
+</script>
