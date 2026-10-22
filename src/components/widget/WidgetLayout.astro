@@ -14,7 +14,18 @@ interface Props {
 const { id, name, isCollapsed, collapsedHeight, style } = Astro.props;
 const className = Astro.props.class;
 ---
-<widget-layout data-id={id} data-is-collapsed={String(isCollapsed)} class={"pb-4 card-base " + className} style={style}>
+
+<!--
+    widget-layout 是自定义元素，默认 display: inline。
+    inline 元素的背景只覆盖行内盒，不会铺满整张卡片（背景看起来"缺一块"），
+    因此显式设为 block。
+-->
+<widget-layout
+    data-id={id}
+    data-is-collapsed={String(isCollapsed)}
+    class:list={["block pb-4 card-base", className]}
+    style={style}
+>
     <div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 relative ml-8 mt-4 mb-2
         before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]
         before:absolute before:left-[-16px] before:top-[5.5px]">{name}</div>

@@ -27,7 +27,7 @@ const hasHeadings = headings.length > 0;
         <!-- 文章目录：位于个人信息下方 -->
         {hasHeadings && (
             <div id="sidebar-toc" class="onload-animation" style="animation-delay: 100ms">
-                <WidgetLayout name={i18n(I18nKey.tableOfContents)} id="toc">
+                <WidgetLayout name={i18n(I18nKey.tableOfContents)} id="toc-widget">
                     <div id="toc-inner-wrapper" class="max-h-[calc(100vh-28rem)] overflow-y-auto overflow-x-hidden hide-scrollbar">
                         <div id="toc" class="w-full">
                             <TOC headings={headings}></TOC>
