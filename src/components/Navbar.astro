@@ -20,9 +20,15 @@ let links: NavBarLink[] = navBarConfig.links.map(
 	},
 );
 ---
+<!--
+    导航栏为独立悬浮卡片：四边圆角 + 顶部留白，
+    避免贴紧视口顶部导致上圆角被裁掉一半（视觉上像"圆角在下"）。
+    mt 由外层 #top-row 控制，此处只负责卡片自身的圆角与边框。
+-->
 <div
     id="navbar"
-    class="z-50 onload-animation mx-auto max-w-[var(--page-width)] bg-[var(--card-bg)] border-b border-[#19191914] rounded-t-[var(--radius-large)]"
+    class="z-50 onload-animation mx-auto max-w-[var(--page-width)] bg-[var(--card-bg)]
+           border border-[#19191914] rounded-[var(--radius-large)] shadow-sm"
 >
     <div class:list={[
         className,
