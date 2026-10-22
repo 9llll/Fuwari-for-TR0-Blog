@@ -1,8 +1,4 @@
 ---
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import { profileConfig, siteConfig } from "@/config";
 import {
@@ -150,6 +146,23 @@ const bannerOffset =
 	<body class=" min-h-screen transition outline-none" class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
 	>
+		<style is:global>
+			@font-face {
+				font-family: "Maple UI";
+				src: url("/fonts/maple-ui.ttf") format("truetype");
+				font-weight: 400;
+				font-style: normal;
+				font-display: swap;
+			}
+
+			@font-face {
+				font-family: "Maple UI";
+				src: url("/fonts/maple-ui-bold.ttf") format("truetype");
+				font-weight: 700;
+				font-style: normal;
+				font-display: swap;
+			}
+		</style>
 		<ConfigCarrier></ConfigCarrier>
 		<slot />
 
