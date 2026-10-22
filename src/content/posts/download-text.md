@@ -4,7 +4,7 @@ published: 2026-10-01
 draft: false
 image: "/images/post-cover.webp"
 category: ["教程"]
-tags: ["教程,Fuwari,ASTRO"]
+tags: ["教程"]
 pinned: true
 ---
 
@@ -13,9 +13,9 @@ pinned: true
 
 ::download{title="羡鱼资源" source="下载来源" url="https://github.com/onexru/Fuwari-for-TR0-Blog"}
 
-::download{title="带提取码的下载" desc="示例：网盘资源需要提取码" size="12.4 MB" code="a1b2" url="https://github.com/onexru/Fuwari-for-TR0-Blog"}
+::download{title="带提取码的下载" desc="示例：网盘资源需要提取码" size="12.4 MB" code="8888" url="https://github.com/onexru/Fuwari-for-TR0-Blog"}
 
-::download{title="加密的下载" desc="示例：需要密码才能下载" size="8.6 MB" password="1234" hint="提示：四位数字" url="https://github.com/onexru/Fuwari-for-TR0-Blog"}
+::download{title="加密的下载" desc="示例：需要密码才能下载" size="8.6 MB" password="1234" hint="提示：四位数字1234" url="https://github.com/onexru/Fuwari-for-TR0-Blog"}
 在文章正文里用 `::download{...}` 指令即可插入下载按钮，**可以放在文章任意位置**（标题下、正文中间、末尾都行）。
 
 ## 最简用法
