@@ -1,6 +1,6 @@
 ---
 title: '下载按钮使用说明'
-published: 2026-10-22
+published: 2026-10-01
 draft: false
 image: "src/assets/images/jc.webp"
 description: '如何在文章任意位置插入下载按钮，支持网盘提取码与独立密码保护'
