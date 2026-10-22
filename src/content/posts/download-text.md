@@ -4,7 +4,7 @@ published: 2026-10-01
 draft: false
 image: "src/assets/images/xz.webp"
 category: ["教程"]
-tags: ["教程"]
+tags: ["下载按钮", "教程","Fuwari","Astro"]
 pinned: true
 ---
 
