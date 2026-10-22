@@ -99,7 +99,7 @@ export const friends = [
 	{
 		name: "大佬论坛",
 		url: "https://www.dalao.net",
-		avatar: "hhttps://api.mrwang.com/ico.php?url=https://www.dalao.net/",
+		avatar: "https://api.mrwang.com/ico.php?url=https://www.dalao.net/",
 		description: "中文站长论坛，中国域名玩家论坛，专注域名投资、域名收藏交流，实时更新域名行情动态；同时打造互联网综合交流、生活分享平台，汇聚各路资源福利，兼顾站长交流、服务器技术与日常分享，是域名爱好者、投资者与站长的一站式交流社区。"
 	}
 ]
