@@ -2,7 +2,7 @@
 title: '下载按钮演示'
 published: 2026-10-01
 draft: false
-image: "/images/xz.webp"
+image: "src/assets/images/xz.webp"
 category: ["教程"]
 tags: ["教程"]
 pinned: true
