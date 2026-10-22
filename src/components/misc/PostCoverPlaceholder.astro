@@ -1,7 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import defaultDownload from "../../assets/images/default-download.png";
-import defaultTutorial from "../../assets/images/default-tutorial.png";
 
 interface Props {
 	class?: string;
@@ -61,9 +59,14 @@ const iconName = encrypted
 const initial = (title || "文").trim().charAt(0) || "文";
 
 // 默认图片：资源下载用文件夹图标，教程文章用黑板图
-const defaultImage = type === "download" ? defaultDownload : defaultTutorial;
+// 放在 public/images/ 下用绝对路径引用，避免构建期依赖（文件可随时替换）
+// 这两张是去白底的透明 PNG，融合在渐变底上效果更好
+const defaultImage =
+	type === "download"
+		? "/images/default-download.png"
+		: "/images/default-tutorial.png";
 // 传入自定义封面时优先使用
-const coverSrc = image || defaultImage.src;
+const coverSrc = image || defaultImage;
 ---
 
 <div

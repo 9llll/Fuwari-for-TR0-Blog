@@ -32,16 +32,33 @@ if (isLocal) {
 	const files = import.meta.glob<ImageMetadata>("../../**", {
 		import: "default",
 	});
-	let normalizedPath = path
-		.normalize(path.join("../../", basePath, src))
-		.replace(/\\/g, "/");
-	const file = files[normalizedPath];
+	// 图片路径支持两种写法，按顺序尝试：
+	//   1. 相对 basePath（文章封面图通常与文章同目录，如 "cover.webp"）
+	//   2. 相对 src/ 根目录（如 "assets/images/x.webp"）
+	//   3. 去掉开头的 "src/"（如 "src/assets/images/x.webp"）
+	const candidates = [
+		path.normalize(path.join("../../", basePath, src)).replace(/\\/g, "/"),
+		path.normalize(path.join("../../", src)).replace(/\\/g, "/"),
+		path
+			.normalize(path.join("../../", src.replace(/^src\//, "")))
+			.replace(/\\/g, "/"),
+	];
+
+	let file: (() => Promise<ImageMetadata>) | undefined;
+	for (const candidate of candidates) {
+		if (files[candidate]) {
+			file = files[candidate];
+			break;
+		}
+	}
+
 	if (!file) {
 		console.error(
-			`\n[ERROR] Image file not found: ${normalizedPath.replace("../../", "src/")}`,
+			`\n[ERROR] Image file not found: ${candidates[0].replace("../../", "src/")}`,
 		);
+	} else {
+		img = await file();
 	}
-	img = await file();
 }
 
 const imageClass = "w-full h-full object-cover";
