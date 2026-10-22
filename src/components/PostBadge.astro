@@ -1,0 +1,84 @@
+---
+import { Icon } from "astro-icon/components";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+
+interface Props {
+	class?: string;
+	/** 角标类型：encrypted（加密下载）/ free（免费下载）/ tutorial（教程文章） */
+	type?: "encrypted" | "free" | "tutorial";
+}
+
+const { class: className, type = "tutorial" } = Astro.props;
+
+// 三种角标的图标与文案。
+// 注意：配色类名必须以字面量形式写在下方模板中——
+// Tailwind 静态扫描无法解析变量引用的类名（需 safelist 才能生效）。
+const BADGE_ICON = {
+	encrypted: "material-symbols:lock",
+	free: "material-symbols:download-rounded",
+	tutorial: "material-symbols:menu-book-rounded",
+} as const;
+
+const BADGE_LABEL = {
+	encrypted: i18n(I18nKey.badgeEncrypted),
+	free: i18n(I18nKey.badgeFree),
+	tutorial: i18n(I18nKey.badgeTutorial),
+} as const;
+
+const currentType =
+	type === "encrypted" || type === "free" || type === "tutorial"
+		? type
+		: "tutorial";
+const currentIcon = BADGE_ICON[currentType];
+const currentLabel = BADGE_LABEL[currentType];
+---
+
+{
+	currentType === "encrypted" && (
+		<span
+			class:list={[
+				"post-badge inline-flex items-center gap-1 rounded-full border px-2.5 py-1",
+				"text-[0.7rem] font-medium leading-none whitespace-nowrap select-none",
+				"bg-orange-500/10 text-orange-600 dark:bg-orange-400/15 dark:text-orange-300",
+				"border-orange-500/25 dark:border-orange-400/25",
+				className,
+			]}
+		>
+			<Icon name={currentIcon} class="text-[0.85rem] shrink-0" />
+			{currentLabel}
+		</span>
+	)
+}
+{
+	currentType === "free" && (
+		<span
+			class:list={[
+				"post-badge inline-flex items-center gap-1 rounded-full border px-2.5 py-1",
+				"text-[0.7rem] font-medium leading-none whitespace-nowrap select-none",
+				"bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/15 dark:text-emerald-300",
+				"border-emerald-500/25 dark:border-emerald-400/25",
+				className,
+			]}
+		>
+			<Icon name={currentIcon} class="text-[0.85rem] shrink-0" />
+			{currentLabel}
+		</span>
+	)
+}
+{
+	currentType === "tutorial" && (
+		<span
+			class:list={[
+				"post-badge inline-flex items-center gap-1 rounded-full border px-2.5 py-1",
+				"text-[0.7rem] font-medium leading-none whitespace-nowrap select-none",
+				"bg-[var(--primary-soft)] text-[var(--primary)]",
+				"border-[var(--primary-border-soft)]",
+				className,
+			]}
+		>
+			<Icon name={currentIcon} class="text-[0.85rem] shrink-0" />
+			{currentLabel}
+		</span>
+	)
+}

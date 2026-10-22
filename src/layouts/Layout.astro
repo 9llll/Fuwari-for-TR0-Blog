@@ -25,7 +25,8 @@ interface Props {
 	setOGTypeArticle?: boolean;
 }
 
-let { title, banner, description, keywords, lang, setOGTypeArticle } = Astro.props;
+let { title, banner, description, keywords, lang, setOGTypeArticle } =
+	Astro.props;
 
 // apply a class to the body element to decide the height of the banner, only used for initial page load
 const isHomePage = pathsEqual(Astro.url.pathname, url("/"));
@@ -203,6 +204,20 @@ const bannerOffset =
 	.navbar-hidden {
 		@apply opacity-0 -translate-y-16
 	}
+}
+
+/* 主色的半透明衍生色。
+ * Tailwind v3 不支持「任意值 + 透明度」组合（如 bg-[var(--primary)]/10），
+ * 需要半透明主色时统一使用这里的变量。 */
+:root {
+	--primary-soft: oklch(0.70 0.14 var(--hue) / 0.12);
+	--primary-soft-hover: oklch(0.70 0.14 var(--hue) / 0.22);
+	--primary-border-soft: oklch(0.70 0.14 var(--hue) / 0.4);
+}
+:root.dark {
+	--primary-soft: oklch(0.75 0.14 var(--hue) / 0.16);
+	--primary-soft-hover: oklch(0.75 0.14 var(--hue) / 0.28);
+	--primary-border-soft: oklch(0.75 0.14 var(--hue) / 0.45);
 }
 </style>
 

@@ -50,4 +50,9 @@ export const th: Translation = {
 	[Key.downloadUnlockSubmit]: "ยืนยัน",
 	[Key.downloadCancel]: "ยกเลิก",
 	[Key.downloadUnlockError]: "รหัสผ่านไม่ถูกต้อง",
+
+	/* Post badge */
+	[Key.badgeEncrypted]: "ดาวน์โหลดแบบเข้ารหัส",
+	[Key.badgeFree]: "ดาวน์โหลดฟรี",
+	[Key.badgeTutorial]: "บทความสอน",
 };

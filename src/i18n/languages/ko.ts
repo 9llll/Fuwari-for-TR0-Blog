@@ -51,4 +51,9 @@ export const ko: Translation = {
 	[Key.downloadUnlockSubmit]: "확인",
 	[Key.downloadCancel]: "취소",
 	[Key.downloadUnlockError]: "비밀번호가 틀렸습니다",
+
+	/* Post badge */
+	[Key.badgeEncrypted]: "암호화 다운로드",
+	[Key.badgeFree]: "무료 다운로드",
+	[Key.badgeTutorial]: "튜토리얼 글",
 };

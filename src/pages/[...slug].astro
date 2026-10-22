@@ -1,8 +1,9 @@
 ---
+import DownloadSupport from "@components/DownloadSupport.astro";
 // import path from "node:path";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
-import DownloadSupport from "@components/DownloadSupport.astro";
+import PostBadge from "@components/PostBadge.astro";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
@@ -72,7 +73,7 @@ const jsonLd = {
             </div>
 
             <!-- title -->
-            <div class="relative onload-animation">
+            <div class="relative onload-animation flex items-start justify-between gap-3">
                 <div
                     data-pagefind-body data-pagefind-weight="10" data-pagefind-meta="title"
                     class="transition w-full block font-bold mb-3
@@ -83,6 +84,8 @@ const jsonLd = {
                 ">
                     {entry.data.title}
                 </div>
+                <!-- 文章角标：加密下载 / 免费下载 / 教程文章（由 remark 自动识别） -->
+                <PostBadge type={remarkPluginFrontmatter.badgeType} class="shrink-0 mt-1.5" />
             </div>
 
             <!-- metadata -->

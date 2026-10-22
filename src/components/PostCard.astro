@@ -6,6 +6,7 @@ import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { getDir } from "../utils/url-utils";
 import ImageWrapper from "./misc/ImageWrapper.astro";
+import PostBadge from "./PostBadge.astro";
 import PostMetadata from "./PostMeta.astro";
 
 interface Props {
@@ -21,7 +22,7 @@ interface Props {
 	description: string;
 	draft: boolean;
 	style: string;
-  pinned?: boolean;
+	pinned?: boolean;
 }
 const {
 	entry,
@@ -34,7 +35,7 @@ const {
 	image,
 	description,
 	style,
-  pinned
+	pinned,
 } = Astro.props;
 const className = Astro.props.class;
 
@@ -46,8 +47,8 @@ const { remarkPluginFrontmatter } = await entry.render();
 
 // 从URL路径中提取文章ID
 const extractArticleId = (urlPath: string) => {
-  const match = urlPath.match(/\/(.*)?\/$/);
-  return match ? match[1] : null;
+	const match = urlPath.match(/\/(.*)?\/$/);
+	return match ? match[1] : null;
 };
 
 const articleId = extractArticleId(url);
@@ -86,18 +87,22 @@ const articleId = extractArticleId(url);
     )}
 
     <div class="flex flex-col justify-start">
-      <a 
-        href={url}
-        class="group block font-bold text-xl mb-3 text-gray-900 dark:text-gray-100 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors"
-      >
-        <span class="line-clamp-2 relative">
-          {title}
-          <Icon 
-            name="material-symbols:chevron-right-rounded"
-            class="inline-block text-[var(--primary)] text-[1.5rem] ml-1 opacity-0 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 transition-all"
-          />
-        </span>
-      </a>
+      <div class="flex items-start justify-between gap-3 mb-3">
+        <a
+          href={url}
+          class="group block font-bold text-xl text-gray-900 dark:text-gray-100 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors min-w-0"
+        >
+          <span class="line-clamp-2 relative">
+            {title}
+            <Icon
+              name="material-symbols:chevron-right-rounded"
+              class="inline-block text-[var(--primary)] text-[1.5rem] ml-1 opacity-0 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 transition-all"
+            />
+          </span>
+        </a>
+        <!-- 文章角标：加密下载 / 免费下载 / 教程文章（由 remark 自动识别） -->
+        <PostBadge type={remarkPluginFrontmatter.badgeType} class="shrink-0 mt-0.5" />
+      </div>
 
       <div class="text-gray-700 dark:text-gray-300 mb-4 line-clamp-2 hidden min-[700px]:block">
         <span class="line-clamp-2">

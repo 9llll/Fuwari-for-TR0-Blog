@@ -50,4 +50,9 @@ export const zh_TW: Translation = {
 	[Key.downloadUnlockSubmit]: "確定",
 	[Key.downloadCancel]: "取消",
 	[Key.downloadUnlockError]: "密碼錯誤",
+
+	/* Post badge */
+	[Key.badgeEncrypted]: "加密下載",
+	[Key.badgeFree]: "免費下載",
+	[Key.badgeTutorial]: "教學文章",
 };

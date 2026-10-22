@@ -47,6 +47,11 @@ enum I18nKey {
 	downloadUnlockSubmit = "downloadUnlockSubmit",
 	downloadCancel = "downloadCancel",
 	downloadUnlockError = "downloadUnlockError",
+
+	/* Post badge */
+	badgeEncrypted = "badgeEncrypted",
+	badgeFree = "badgeFree",
+	badgeTutorial = "badgeTutorial",
 }
 
 export default I18nKey;

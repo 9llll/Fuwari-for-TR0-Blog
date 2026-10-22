@@ -12,7 +12,7 @@
 export const dlRow =
 	"dl-row group flex flex-wrap items-center gap-2 sm:gap-3 rounded-2xl px-3.5 sm:px-4 py-3 " +
 	"bg-[var(--license-block-bg)] border border-[var(--line-divider)] transition-all duration-200 " +
-	"hover:border-[var(--primary)]/40 hover:shadow-sm";
+	"hover:border-[var(--primary-border-soft)] hover:shadow-sm";
 
 /** 左侧徽章 */
 export const dlBadge =
@@ -33,7 +33,7 @@ export const dlSize =
 
 /** 锁标记 */
 export const dlLock =
-	"dl-lock mr-1.5 inline-flex items-center gap-0.5 rounded-md bg-[var(--primary)]/12 " +
+	"dl-lock mr-1.5 inline-flex items-center gap-0.5 rounded-md bg-[var(--primary-soft)] " +
 	"px-1.5 py-0.5 text-[0.65rem] font-medium text-[var(--primary)] shrink-0 align-middle";
 
 /** 副信息行（锁标记 + 简介 + 大小，自然文本流换行） */
@@ -50,7 +50,7 @@ export const dlActions =
 /** 提取码按钮（浅色） */
 export const dlCodeBtn =
 	"dl-code inline-flex items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-[0.8rem] font-medium " +
-	"bg-[var(--primary)]/10 text-[var(--primary)] hover:bg-[var(--primary)]/20 active:scale-[0.97] " +
+	"bg-[var(--primary-soft)] text-[var(--primary)] hover:bg-[var(--primary-soft-hover)] active:scale-[0.97] " +
 	"transition-all cursor-pointer select-none whitespace-nowrap max-[560px]:flex-1";
 
 /** 下载按钮（实心主色） */

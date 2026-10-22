@@ -51,4 +51,9 @@ export const id: Translation = {
 	[Key.downloadUnlockSubmit]: "Konfirmasi",
 	[Key.downloadCancel]: "Batal",
 	[Key.downloadUnlockError]: "Kata sandi salah",
+
+	/* Post badge */
+	[Key.badgeEncrypted]: "Unduhan terenkripsi",
+	[Key.badgeFree]: "Unduhan gratis",
+	[Key.badgeTutorial]: "Artikel tutorial",
 };

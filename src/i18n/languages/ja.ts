@@ -51,4 +51,9 @@ export const ja: Translation = {
 	[Key.downloadUnlockSubmit]: "確認",
 	[Key.downloadCancel]: "キャンセル",
 	[Key.downloadUnlockError]: "パスワードが違います",
+
+	/* Post badge */
+	[Key.badgeEncrypted]: "暗号化ダウンロード",
+	[Key.badgeFree]: "無料ダウンロード",
+	[Key.badgeTutorial]: "チュートリアル記事",
 };

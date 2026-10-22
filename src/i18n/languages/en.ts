@@ -51,4 +51,9 @@ export const en: Translation = {
 	[Key.downloadUnlockSubmit]: "Confirm",
 	[Key.downloadCancel]: "Cancel",
 	[Key.downloadUnlockError]: "Incorrect password",
+
+	/* Post badge */
+	[Key.badgeEncrypted]: "Encrypted download",
+	[Key.badgeFree]: "Free download",
+	[Key.badgeTutorial]: "Tutorial article",
 };

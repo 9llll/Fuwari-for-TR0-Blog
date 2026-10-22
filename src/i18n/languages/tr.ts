@@ -51,4 +51,9 @@ export const tr: Translation = {
 	[Key.downloadUnlockSubmit]: "Onayla",
 	[Key.downloadCancel]: "İptal",
 	[Key.downloadUnlockError]: "Şifre yanlış",
+
+	/* Post badge */
+	[Key.badgeEncrypted]: "Şifreli indirme",
+	[Key.badgeFree]: "Ücretsiz indirme",
+	[Key.badgeTutorial]: "Öğretici makale",
 };

@@ -51,4 +51,9 @@ export const vi: Translation = {
 	[Key.downloadUnlockSubmit]: "Xác nhận",
 	[Key.downloadCancel]: "Hủy",
 	[Key.downloadUnlockError]: "Mật khẩu không đúng",
+
+	/* Post badge */
+	[Key.badgeEncrypted]: "Tải xuống có mã hóa",
+	[Key.badgeFree]: "Tải xuống miễn phí",
+	[Key.badgeTutorial]: "Bài hướng dẫn",
 };
