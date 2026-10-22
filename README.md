@@ -1,9 +1,4 @@
 # Fuwari-for-TR0-Blog
-
-雾创岛博客程序
-
-预览：[https://www.tr0.cn](https://www.tr0.cn)
-
 基于Fuwari魔改的博客程序，部分代码使用了AI构建
 
 ## 新增模块
