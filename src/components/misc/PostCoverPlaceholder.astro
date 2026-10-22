@@ -1,5 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
+import defaultDownload from "../../assets/images/default-download.png";
+import defaultTutorial from "../../assets/images/default-tutorial.png";
 
 interface Props {
 	class?: string;
@@ -7,11 +9,19 @@ interface Props {
 	title: string;
 	/** 分类名，用于选择图标 */
 	category?: string;
+	/** 占位类型：tutorial（教程文章）/ download（资源下载） */
+	type?: "tutorial" | "download";
 	/** 是否为加密资源（加密下载 → 锁图标） */
 	encrypted?: boolean;
 }
 
-const { class: className, title, category, encrypted = false } = Astro.props;
+const {
+	class: className,
+	title,
+	category,
+	type = "tutorial",
+	encrypted = false,
+} = Astro.props;
 
 // 依据标题生成稳定的色相偏移，让不同文章的占位封面有区分度，
 // 同时保持整体在同一色系内（不会花）。
@@ -28,7 +38,7 @@ const ICON_RULES: { match: RegExp; icon: string }[] = [
 		icon: "material-symbols:download-rounded",
 	},
 	{
-		match: /教程|指南|攻略|教程|使用|howto|guide/i,
+		match: /教程|指南|攻略|使用|howto|guide/i,
 		icon: "material-symbols:menu-book-rounded",
 	},
 	{
@@ -46,6 +56,9 @@ const iconName = encrypted
 
 // 取标题首个非空白字符作为大字
 const initial = (title || "文").trim().charAt(0) || "文";
+
+// 默认图片：资源下载用文件夹图标，教程文章用黑板图
+const defaultImage = type === "download" ? defaultDownload : defaultTutorial;
 ---
 
 <div
@@ -65,6 +78,13 @@ const initial = (title || "文").trim().charAt(0) || "文";
 	>
 	</div>
 
+	<!-- 深色模式下的浅色衬底：黑色素材在深底上需要一层浅底才看得清 -->
+	<div
+		class="absolute inset-0 hidden dark:block"
+		style="background: oklch(0.32 0.03 calc(var(--hue) + var(--cover-hue-offset)) / 0.55);"
+	>
+	</div>
+
 	<!-- 装饰圆环 -->
 	<div
 		class="absolute rounded-full"
@@ -73,20 +93,36 @@ const initial = (title || "文").trim().charAt(0) || "文";
 	>
 	</div>
 
-	<!-- 主体：图标 + 首字 -->
-	<div class="relative z-10 flex flex-col items-center justify-center h-full w-full">
-		<!-- 首字作为背景装饰 -->
-		<span
-			class="absolute text-[5.5rem] sm:text-[6.5rem] font-black leading-none select-none"
-			style="color: oklch(0.55 0.12 calc(var(--hue) + var(--cover-hue-offset)) / 0.16);"
-		>
-			{initial}
-		</span>
-		<!-- 图标前景 -->
+	<!-- 首字作为背景装饰 -->
+	<span
+		class="absolute text-[5.5rem] sm:text-[6.5rem] font-black leading-none select-none"
+		style="color: oklch(0.55 0.12 calc(var(--hue) + var(--cover-hue-offset)) / 0.16);"
+	>
+		{initial}
+	</span>
+
+	<!-- 默认图片（已预处理为透明底 PNG，浅色/深色模式都能自然融入） -->
+	<img
+		src={defaultImage.src}
+		alt=""
+		loading="lazy"
+		class="relative z-10 w-[64%] h-[64%] object-contain"
+		style="filter: drop-shadow(0 2px 6px oklch(0.4 0.05 var(--hue) / 0.22));"
+	/>
+
+	<!-- 类型角标 -->
+	<div
+		class="absolute bottom-1.5 right-1.5 z-20 inline-flex items-center gap-1 rounded-full px-1.5 py-0.5
+			text-[0.6rem] font-medium leading-none"
+		style="background: oklch(0.98 0.02 var(--hue) / 0.9);
+			color: oklch(0.45 0.12 calc(var(--hue) + var(--cover-hue-offset)));"
+	>
 		<Icon
-			name={iconName}
-			class="relative w-8 h-8 sm:w-9 sm:h-9"
-			style="color: oklch(0.48 0.12 calc(var(--hue) + var(--cover-hue-offset)));"
+			name={type === "download"
+				? "material-symbols:download-rounded"
+				: "material-symbols:menu-book-rounded"}
+			class="w-3 h-3"
 		/>
+		{type === "download" ? "资源" : "教程"}
 	</div>
 </div>

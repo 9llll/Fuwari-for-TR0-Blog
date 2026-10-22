@@ -49,6 +49,13 @@ const { remarkPluginFrontmatter } = await entry.render();
 // 是否为加密资源文章（用于占位封面的图标选择）
 const isEncrypted = remarkPluginFrontmatter.badgeType === "encrypted";
 
+// 占位封面类型：带下载资源的文章用「资源」默认图，其余用「教程」默认图
+const coverType =
+	remarkPluginFrontmatter.badgeType === "encrypted" ||
+	remarkPluginFrontmatter.badgeType === "free"
+		? "download"
+		: "tutorial";
+
 // 从URL路径中提取文章ID
 const extractArticleId = (urlPath: string) => {
 	const match = urlPath.match(/\/(.*)?\/$/);
@@ -87,6 +94,7 @@ const articleId = extractArticleId(url);
           <PostCoverPlaceholder
             title={title}
             category={category?.[0]}
+            type={coverType}
             encrypted={isEncrypted}
             class="w-full h-full"
           />
