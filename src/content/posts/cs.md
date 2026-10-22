@@ -1,8 +1,8 @@
 ---
 title: '下载按钮演示'
-published: 2025-11-13
+published: 2026-10-01
 draft: false
-image: "https://www.tr0.cn/uploads/2024/12/22f25331313ea93eaf91858e4ebc7bdc.webp"
+image: "https://api.suyanw.cn/api/meitui.php"
 category: ["教程"]
 tags: ["教程,Fuwari,ASTRO"]
 pinned: true
