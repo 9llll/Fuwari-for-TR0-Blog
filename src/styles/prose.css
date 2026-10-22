@@ -62,8 +62,21 @@
     @apply rounded-lg;
 }
 
+/* 表格：窄屏时允许横向滚动，避免单元格被挤压换行。
+   用 display:block 让表格自身成为滚动容器（宽屏再切回 table 布局）。 */
 .prose table {
     @apply w-full border-collapse mb-4;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 700px) {
+    .prose table {
+        display: table;
+        white-space: normal;
+    }
 }
 
 .prose th,
