@@ -8,9 +8,9 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "雾创岛",
-	keywords: "雾创岛,初春网络,初春网络旗下资源站,资源分享,资源网,PC 软件,PC 软件下载,安卓应用,安卓 APP, 实用 APP, 源码,源码分享,开源源码,优质资源,免费资源,无广告资源,绿色软件,手机应用,精品资源,资源合集,资源平台,软件下载,应用推荐,源码下载,雾创岛资源,综合资源网,技术教程,EdgeOne 教程,EdgeOne 配置,Cloudflare 教程,Cloudflare 设置,CDN 技术教程,EdgeOne 使用指南,Cloudflare 优化教程,网络技术教程,服务器技术教程,站长技术资讯,网站技术教程,建站技术分享,服务器运维教程,网站搭建教程,站长工具资源,网站优化技术,服务器配置教程,网站安全技术,站长资源分享,网站源码教程,CDN 站长工具,EdgeOne 站长指南,Cloudflare 站长教程",
-	description: "雾创岛是初春网络旗下专注于优质资源聚合的分享平台，涵盖 PC 软件、安卓应用、实用 APP、各类源码及多领域精品资源，致力于通过精选内容与流畅体验，打造国内用户体验一流的综合性资源分享网站。",
+	title: "羡鱼资源",
+	keywords: "羡鱼资源,资源分享,资源网,PC 软件,PC 软件下载,安卓应用,安卓 APP, 实用 APP, 源码,源码分享,开源源码,优质资源,免费资源,无广告资源,绿色软件,手机应用,精品资源,资源合集,资源平台,软件下载,应用推荐,源码下载,雾创岛资源,综合资源网,技术教程,EdgeOne 教程,EdgeOne 配置,Cloudflare 教程,Cloudflare 设置,CDN 技术教程,EdgeOne 使用指南,Cloudflare 优化教程,网络技术教程,服务器技术教程,站长技术资讯,网站技术教程,建站技术分享,服务器运维教程,网站搭建教程,站长工具资源,网站优化技术,服务器配置教程,网站安全技术,站长资源分享,网站源码教程,CDN 站长工具,EdgeOne 站长指南,Cloudflare 站长教程",
+	description: "羡鱼资源专注于优质资源聚合的分享平台，涵盖 PC 软件、安卓应用、实用 APP、各类源码及多领域精品资源，致力于通过精选内容与流畅体验，打造国内用户体验一流的综合性资源分享网站。",
 	lang: "zh_CN", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
 		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -54,33 +54,33 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	title: "雾创岛",
+	title: "羡鱼资源",
 	avatar: "assets/images/avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "小森",
-	bio: "心存敬畏 行有所止\n珍惜当下 不负时光",
+	name: "羡鱼",
+	bio: "夫唯不争\n故天下莫能与之争。",
 	links: [
 		{
 			name: "Home",
 			icon: "fa6-brands:chrome",
-			url: "https://www.cv0.cn",
+			url: "https://www.moci.cc",
 		},
 		{
 			name: "QQ",
 			icon: "fa6-brands:qq",
-			url: "https://qm.qq.com/q/lzT9IDkKVG",
+			url: "https://pd.qq.com/qqweb/qunpro/share?_wv=3&_wwv=128&appChannel=share&attaContentID=2c2b39108a3646c2b5da95b49c9928b9&biz=ka&businessType=9&from=246610&inviteCode=2DJ40Bau83b&mainSourceId=share&subSourceId=others&b=9",
 		},
 		{
 			name: "BiliBili",
 			icon: "fa6-brands:bilibili",
-			url: "https://space.bilibili.com/353774279",
+			url: "https://space.bilibili.com/3690991479425287",
 		},
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/onexru",
+			url: "https://github.com/9llll",
 		},
 	],
-	icp: "桂ICP备2021008816号-2"
+	icp: "陕ICP备2025081382号"
 };
 
 export const licenseConfig: LicenseConfig = {
@@ -97,9 +97,9 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 
 export const friends = [
 	{
-		name: "雾创岛",
-		url: "https://www.tr0.cn/",
-		avatar: "https://www.tr0.cn/uploads/2024/12/cropped-r1000-logov5-180x180.png",
-		description: "雾创岛"
+		name: "大佬论坛",
+		url: "https://www.dalao.net",
+		avatar: "hhttps://api.mrwang.com/ico.php?url=https://www.dalao.net/",
+		description: "中文站长论坛，中国域名玩家论坛，专注域名投资、域名收藏交流，实时更新域名行情动态；同时打造互联网综合交流、生活分享平台，汇聚各路资源福利，兼顾站长交流、服务器技术与日常分享，是域名爱好者、投资者与站长的一站式交流社区。"
 	}
 ]
