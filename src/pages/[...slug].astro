@@ -47,7 +47,18 @@ const jsonLd = {
 	// TODO include cover image here
 };
 ---
-<link href="https://api.eta.im/dist/Artalk.css" rel="stylesheet" />
+<!-- Artalk 评论样式：异步加载。
+     第三方域名 api.eta.im 在部分网络下不可达，阻塞式 <link> 会拖住
+     window load 事件，导致页面长时间停留在加载动画上。 -->
+<link
+    href="https://api.eta.im/dist/Artalk.css"
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+/>
+<noscript>
+    <link href="https://api.eta.im/dist/Artalk.css" rel="stylesheet" />
+</noscript>
 <MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} setOGTypeArticle={true} headings={headings}>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4">
