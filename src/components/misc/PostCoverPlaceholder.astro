@@ -13,6 +13,8 @@ interface Props {
 	type?: "tutorial" | "download";
 	/** 是否为加密资源（加密下载 → 锁图标） */
 	encrypted?: boolean;
+	/** 自定义封面图地址（相对 public/ 的绝对路径）。传入时优先使用该图 */
+	image?: string;
 }
 
 const {
@@ -21,6 +23,7 @@ const {
 	category,
 	type = "tutorial",
 	encrypted = false,
+	image,
 } = Astro.props;
 
 // 依据标题生成稳定的色相偏移，让不同文章的占位封面有区分度，
@@ -59,6 +62,8 @@ const initial = (title || "文").trim().charAt(0) || "文";
 
 // 默认图片：资源下载用文件夹图标，教程文章用黑板图
 const defaultImage = type === "download" ? defaultDownload : defaultTutorial;
+// 传入自定义封面时优先使用
+const coverSrc = image || defaultImage.src;
 ---
 
 <div
@@ -101,9 +106,9 @@ const defaultImage = type === "download" ? defaultDownload : defaultTutorial;
 		{initial}
 	</span>
 
-	<!-- 默认图片（已预处理为透明底 PNG，浅色/深色模式都能自然融入） -->
+	<!-- 封面图（默认图为已预处理为透明底的 PNG，浅色/深色模式都能自然融入渐变底） -->
 	<img
-		src={defaultImage.src}
+		src={coverSrc}
 		alt=""
 		loading="lazy"
 		class="relative z-10 w-[64%] h-[64%] object-contain"

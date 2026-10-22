@@ -40,10 +40,6 @@ const {
 } = Astro.props;
 const className = Astro.props.class;
 
-// 核心配置：8:5 比例（480×300 的比例）
-const hasCover = image !== undefined && image !== null && image !== "";
-const imageColumnWidth = "32%";
-
 const { remarkPluginFrontmatter } = await entry.render();
 
 // 是否为加密资源文章（用于占位封面的图标选择）
@@ -55,6 +51,14 @@ const coverType =
 	remarkPluginFrontmatter.badgeType === "free"
 		? "download"
 		: "tutorial";
+
+// frontmatter 指定了 /images/default-*.png 时，走占位封面组件，
+// 以获得渐变底 + 类型角标的统一效果（普通图片则原样展示）
+const isDefaultCover = /^\/images\/default-(tutorial|download)\.png$/.test(
+	image,
+);
+const hasCover =
+	!isDefaultCover && image !== undefined && image !== null && image !== "";
 
 // 从URL路径中提取文章ID
 const extractArticleId = (urlPath: string) => {
@@ -96,6 +100,7 @@ const articleId = extractArticleId(url);
             category={category?.[0]}
             type={coverType}
             encrypted={isEncrypted}
+            image={isDefaultCover ? image : undefined}
             class="w-full h-full"
           />
         )}
