@@ -1,7 +1,7 @@
 ---
 title: '下载按钮使用说明'
 published: 2026-10-22
-draft: true
+draft: false
 description: '如何在文章任意位置插入下载按钮，支持网盘提取码与独立密码保护'
 category: ["教程"]
 tags: ["下载按钮", "教程"]
