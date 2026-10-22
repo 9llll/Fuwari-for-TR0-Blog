@@ -1,6 +1,48 @@
+import { getImage } from "astro:assets";
 import { getCollection } from "astro:content";
-import type { APIRoute } from "astro";
+import type { APIRoute, ImageMetadata } from "astro";
 import MarkdownIt from "markdown-it";
+
+// 预加载 src/assets 下的图片，用于把 frontmatter 中的相对路径
+// 解析成 Astro 构建后的 /_astro/xxx.webp 真实地址。
+// 首页 PostCard 走 ImageWrapper 组件能正确解析，但本 API 端点需要自行解析。
+const assetImages = import.meta.glob<ImageMetadata>("../../assets/**", {
+	import: "default",
+});
+
+// 把 frontmatter 的 image 字段解析为可访问的 URL：
+//   - 远程图片（http/https）：原样返回
+//   - public/ 绝对路径（以 / 开头）：原样返回
+//   - src/assets/... 相对路径：解析为 Astro 优化后的 /_astro/... 地址
+async function resolveImageUrl(p: unknown): Promise<string> {
+	const fallback = "/favicon/favicon-32x32.png";
+	if (!p || typeof p !== "string") return fallback;
+	const s = String(p).trim();
+	if (s.startsWith("http://") || s.startsWith("https://") || s.startsWith("/"))
+		return s;
+
+	const filename = s
+		.replace(/^\.?\//, "")
+		.split("/")
+		.pop();
+	if (!filename) return fallback;
+
+	// 在已加载资源中按文件名匹配（兼容 assets 下任意子目录）
+	const directKey = `src/assets/images/${filename}`;
+	const key =
+		(directKey in assetImages && directKey) ||
+		Object.keys(assetImages).find((k) => k.endsWith(`/${filename}`)) ||
+		"";
+	if (key) {
+		try {
+			const { src } = await getImage({ src: await assetImages[key]() });
+			return src;
+		} catch {
+			return fallback;
+		}
+	}
+	return fallback;
+}
 
 export const prerender = true;
 
@@ -43,20 +85,10 @@ export const GET: APIRoute = async ({ params }) => {
 			);
 		}
 
-		// 处理图片路径
+		// 处理图片路径：把 frontmatter 中的 src/assets/... 相对路径
+		// 解析为 Astro 构建后的 /_astro/... 真实地址（否则图片 404 不显示）
 		const frontmatter = article.data;
-
-		// 开发环境：直接规范化原始路径返回；生产发布使用 dist/api/*.json
-		const normalizeImagePath = (p: unknown) => {
-			if (!p || typeof p !== "string") return "/favicon/favicon-32x32.png";
-			const s0 = String(p).trim();
-			if (s0.startsWith("http://") || s0.startsWith("https://")) return s0;
-			let s = s0;
-			if (s.startsWith("./")) s = s.slice(2);
-			if (!s.startsWith("/")) s = "/" + s;
-			return s;
-		};
-		const imageUrlNormalized = normalizeImagePath(frontmatter?.image);
+		const imageUrlNormalized = await resolveImageUrl(frontmatter?.image);
 		const a = article!; // 非空断言，已在上方判空
 
 		// 使用markdown-it渲染HTML
