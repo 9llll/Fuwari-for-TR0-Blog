@@ -1,23 +1,35 @@
 ---
-title: "大话回合手游【缥缈西游之小熊定制完整多区修复版】"
-description: "大话回合手游小熊定制版的多区修复整合包记录：包含 Linux 手工服务端搭建与管理后台、CDK 后台、安卓与苹果双端客户端，以及本版本相对前代修复与调整的完整清单。"
+title: 大话回合手游【缥缈西游之小熊定制完整多区修复版】
+description: 大话回合手游小熊定制版的多区修复整合包记录：包含 Linux 手工服务端搭建与管理后台、CDK
+  后台、安卓与苹果双端客户端，以及本版本相对前代修复与调整的完整清单。
 published: 2026-10-07
 updated: 2026-10-07
-tags: ["源码", "游戏", "游戏搭建", "可联网"]
-category: 游戏源码
+tags:
+  - 源码
+  - 游戏
+  - 游戏搭建
+  - 可联网
+  - 服务器
+category:
+  - 游戏源码
+image: images/dhsy.avif
+author: 羡鱼
+series: 回合制
+seriesOrder: 3
+ogImage: https://raw.githubusercontent.com/9llll/Xy-blog/refs/heads/main/src/content/posts/images/dhsy.avif
 draft: false
 pinned: false
 comment: true
-image: src/content/posts/images/xy-xxdz.avif
 ---
 ## 下载与提取码
-::download{name="【🔒加密资源】缥缈西游之小熊定制" url="https://pan.baidu.com/s/1cwReoLRHsPZYPw-pZt9quQ" desc="Linux 手工服务端搭建与管理后台、CDK 后台、安卓与苹果双端客户端，以及本版本相对前代修复与调整的完整清单。" size="4 GB" code="9jd4" password="10068" hint="联系：golooo@qq.com"}
 
-本文整理了<strong>大话回合手游【缥缈西游之小熊定制完整多区修复版】</strong>这一版本的内容与更新记录，涵盖服务端搭建、管理后台配置以及双端客户端的完整说明。
+::download{name="【🔒加密资源】缥缈西游之小熊定制" url="[https://pan.baidu.com/s/1cwReoLRHsPZYPw-pZt9quQ](https://pan.baidu.com/s/1cwReoLRHsPZYPw-pZt9quQ)" desc="Linux 手工服务端搭建与管理后台、CDK 后台、安卓与苹果双端客户端，以及本版本相对前代修复与调整的完整清单。" size="4 GB" code="9jd4" password="10068" hint="联系：[golooo@qq.com](mailto:golooo@qq.com)"}
+
+本文整理了**大话回合手游【缥缈西游之小熊定制完整多区修复版】**这一版本的内容与更新记录，涵盖服务端搭建、管理后台配置以及双端客户端的完整说明。
 
 > 说明：本文为个人学习收藏所用，仅作技术记录与学习交流之用。请在合法合规的前提下使用，勿用于任何商业用途或非法运营。
 
-::video{src="https://www.bilibili.com/video/BV1nSNoeeE4c/" title="缥缈西游搭建教程视频"}
+::video{src="[https://www.bilibili.com/video/BV1nSNoeeE4c/](https://www.bilibili.com/video/BV1nSNoeeE4c/)" title="缥缈西游搭建教程视频"}
 
 ## 版本更新内容
 
@@ -37,19 +49,21 @@ image: src/content/posts/images/xy-xxdz.avif
 12. **一键扩容背包/仓库**（500 格）
 13. **五行修炼一键满级**
 
-![版本示意图](./images/xy-xxdz.avif)
+![版本示意图](images/xy-xxdz.avif)
 
 ## 整合包内容
 
-| 组成部分        | 说明                      |
-| ----------- | ----------------------- |
+
+| 组成部分 | 说明 |
+| ----------- | --------------------------------------------------------------- |
 | Linux 手工服务端 | 手工部署的服务端程序，配合下方教程即可完成搭建 |
-| 详细搭建教程      | 文字版部署步骤，覆盖环境准备到开服流程     |
-| 视频教程        | [补充演示视频，帮助理解文字步骤 ](https://www.bilibili.com/video/BV1nSNoeeE4c/)        |
-| 管理后台        | 后台管理界面，便于日常配置与运营        |
-| CDK 后台      | 兑换码发放与校验后台              |
-| 安卓端         | Android 客户端             |
-| 苹果端         | iOS 客户端                 |
+| 详细搭建教程 | 文字版部署步骤，覆盖环境准备到开服流程 |
+| 视频教程 | [补充演示视频，帮助理解文字步骤](https://www.bilibili.com/video/BV1nSNoeeE4c/) |
+| 管理后台 | 后台管理界面，便于日常配置与运营 |
+| CDK 后台 | 兑换码发放与校验后台 |
+| 安卓端 | Android 客户端 |
+| 苹果端 | iOS 客户端 |
+
 
 ## 搭建要点提示
 
