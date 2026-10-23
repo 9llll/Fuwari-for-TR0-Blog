@@ -22,7 +22,7 @@ draft: false
 pinned: false
 comment: true
 ---
-::github{repo="9llll/home"}
+::github{repo="9llll/pagecms"}
 
 ::download{title="测试-免费资源" source="下载来源" url="https://moci.cc"}
 
