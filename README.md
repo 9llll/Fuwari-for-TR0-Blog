@@ -28,6 +28,7 @@
 | `::download{...}` | 下载按钮，支持网盘提取码、访问密码保护、真实地址 Base64 混淆 |
 | `::btn{...}` | 链接按钮，四种样式变体 + 八种内置图标 |
 | `::video{...}` | 视频播放器，支持 B 站 / YouTube / 本地文件，固定宽高比自适应 |
+| `::gallery` | 图片网格，多图等宽排列，点击自动接入 PhotoSwipe 灯箱放大 |
 | `::post{id="..."}` | 在文章中引用另一篇文章的卡片 |
 | `::github{repo="..."}` | GitHub 仓库卡片 |
 | `::note{}` `::tip{}` `::important{}` `::caution{}` `::warning{}` | 五种提示框 |
@@ -35,15 +36,45 @@
 > `::download` 的访问密码在**构建期**转为 SHA-256 哈希写入 `data-dl-hash`，
 > 明文密码不会出现在任何输出文件中；真实下载地址也会被 Base64 编码，查看网页源码搜不到。
 
+### 视频点击播放
+
+`::video` 默认**不自动加载播放器**：页面上先渲染「封面 + 播放按钮」，
+点一下才注入真正的播放器并自动开播。
+
+- B 站封面在**构建期**自动抓取（`api.bilibili.com`），也可以用 `poster` 自定义
+- 首屏不加载第三方播放器，更轻量，也不会一进页面就弹出 B 站登录框
+- 点击属于用户手势，浏览器不会再拦截 `autoplay`
+
 ### 其它改进
 
 - **全站图片统一 AVIF** — 自定义图片服务，产物图片默认输出 AVIF（同画质下比 WebP 小约 30~55%）
 - **随机封面图** — `image: api` 可按文章 id 生成稳定的随机封面
+- **封面回退链** — `image` 字段 → 正文第一张图 → 随机封面 API，CMS 里只传图也能有封面
 - **渐变占位封面** — 未指定封面图时按文章类型生成带角标的渐变占位图
 - **移动端适配** — 表格在窄屏下自动换行完整展示、不需横向滑动；GitHub 卡片在窄屏下自适应换行
 - **深浅色主题** — 主题色（色相）可调，站内所有按钮与配色自动跟随
 - **侧边栏** — 头像、分类、标签、目录、显示设置等组件，移动端折叠为侧边栏
 - **代码块增强** — [Expressive Code](https://expressive-code.com/)，支持代码折叠、行号、语言徽章、一键复制
+- **SEO 字段** — `keywords` / `author` / `ogImage` 写入 meta 与 JSON-LD
+- **系列文章** — `series` + `seriesOrder` 自动生成文末「上一篇 / 下一篇」导航
+
+---
+
+## 📝 Pages CMS 在线编辑
+
+仓库根目录的 [`.pages.yml`](https://app.pagescms.org/) 配置了可视化编辑后台：
+在 [app.pagescms.org](https://app.pagescms.org/) 用 GitHub 授权打开本仓库即可编辑。
+
+| 能力 | 说明 |
+| --- | --- |
+| 文章编辑 | 标题、简介、日期、标签、分类、置顶、草稿、评论开关、正文 |
+| 图片上传 | 统一存到 `src/content/posts/images`，文件名自动 slug 化防重名 |
+| 封面逻辑 | 封面字段留空时自动用正文第一张图，再没有则用随机封面 API |
+| SEO 字段 | `keywords` / `author` / `ogImage` / `series` / `seriesOrder` |
+| 指令编辑 | 正文切到 **Source（源码）** 模式即可编写 `::btn` / `::video` / `::gallery` 等指令 |
+
+> Pages CMS 的媒体目录是固定路径，**不支持按文章自动分子文件夹**；
+> 当前做法是所有文章图共用 `posts/images` 目录 + 文件名 slug 化。
 
 ---
 
@@ -96,6 +127,11 @@ image: api                   # 封面图，见下方说明
 category: ["游戏源码"]        # 分类（数组，也兼容单字符串写法）
 tags: ["源码", "游戏"]         # 标签
 comment: true                # 是否开启评论
+keywords: ["关键词1", "关键词2"]  # SEO 关键词
+author: "作者名"              # 留空则用站点默认作者
+ogImage: "https://.../cover.png"  # 社交分享图（完整 http(s) 链接）
+series: "新手教程"            # 系列名称，留空表示不属于任何系列
+seriesOrder: 1               # 系列内排序，数字越小越靠前
 ---
 ```
 
@@ -103,7 +139,7 @@ comment: true                # 是否开启评论
 
 | 写法 | 效果 |
 | --- | --- |
-| 省略 / 留空 | 使用渐变占位封面，按文章类型自动选择图标与角标 |
+| 省略 / 留空 | 依次回退：**正文第一张图** → 随机封面图 API |
 | `api` | 使用随机封面图（按文章 id 生成，同一篇文章封面固定不变） |
 | 具体路径 | 使用指定图片，如 `src/assets/images/x.webp` 或 `/images/x.png` |
 
@@ -166,12 +202,21 @@ src/
 │   └── page/            # 分页路由
 ├── plugins/             # Markdown 插件与自定义组件
 │   ├── rehype-component-*.mjs   # 指令渲染组件
+│   ├── rehype-video-facade.mjs   # 视频点击播放面板（构建期抓 B 站封面）
 │   ├── remark-*.mjs/.js          # Markdown 解析插件
 │   └── image-service-avif.mjs    # 自定义图片服务（统一 AVIF）
 ├── styles/              # 全局样式
 ├── types/               # 类型定义
 └── utils/               # 工具函数（封面图、下载、URL、日期等）
 ```
+
+仓库根目录：
+
+| 文件 | 说明 |
+| --- | --- |
+| `.pages.yml` | Pages CMS 在线编辑后台的配置 |
+| `astro.config.mjs` | Astro 站点配置、图片服务、Markdown 插件链 |
+| `src/config.ts` | 站点、导航、侧边栏等站点级配置 |
 
 ---
 
