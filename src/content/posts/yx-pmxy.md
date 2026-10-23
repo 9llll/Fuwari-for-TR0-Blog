@@ -23,7 +23,7 @@ comment: true
 ---
 ## 下载与提取码
 
-::download{name="【🔒加密资源】缥缈西游之小熊定制" url="[https://pan.baidu.com/s/1cwReoLRHsPZYPw-pZt9quQ](https://pan.baidu.com/s/1cwReoLRHsPZYPw-pZt9quQ)" desc="Linux 手工服务端搭建与管理后台、CDK 后台、安卓与苹果双端客户端，以及本版本相对前代修复与调整的完整清单。" size="4 GB" code="9jd4" password="10068" hint="联系：[golooo@qq.com](mailto:golooo@qq.com)"}
+::download{name="【🔒加密资源】缥缈西游之小熊定制" url="https://pan.baidu.com/s/1cwReoLRHsPZYPw-pZt9quQ" desc="Linux 手工服务端搭建与管理后台、CDK 后台、安卓与苹果双端客户端，以及本版本相对前代修复与调整的完整清单。" size="4 GB" code="9jd4" password="10068" hint="联系：[golooo@qq.com](mailto:golooo@qq.com)"}
 
 本文整理了**大话回合手游【缥缈西游之小熊定制完整多区修复版】**这一版本的内容与更新记录，涵盖服务端搭建、管理后台配置以及双端客户端的完整说明。
 
