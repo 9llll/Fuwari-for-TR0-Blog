@@ -1,21 +1,34 @@
 ---
-title: '下载按钮演示'
+title: 下载按钮演示
+description: 下载按钮演示
 published: 2026-10-01
+updated: 2026-10-01
+tags:
+  - 下载按钮
+  - 教程
+  - Fuwari
+  - Astro
+category:
+  - 指令
+image: images/xiazai.avif
+keywords:
+  - ::download 演示，Markdown 下载按钮演示，资源下载指令，Astro 下载按钮，静态站下载按钮示例  今天
+    21:05   如何在Markdown文章中插入下载按钮？   下载按钮的密码保护逻辑是怎样的？   如何进行常见故障排查？
+author: 羡鱼
+series: 指令
+seriesOrder: 0
+ogImage: https://raw.githubusercontent.com/9llll/Xy-blog/refs/heads/main/src/content/posts/images/fenxiang.avif
 draft: false
-image: "src/assets/images/xz.webp"
-category: ["教程"]
-tags: ["下载按钮", "教程","Fuwari","Astro"]
 pinned: false
+comment: true
 ---
+::github{repo="9llll/home"}
 
+::download{title="测试-免费资源" source="下载来源" url="[https://moci.cc"}](https://moci.cc"})
 
-::github{repo="onexru/Fuwari-for-TR0-Blog"}
+::download{title="测试：提取码复制" desc="示例：网盘资源需要提取码" size="12.4 MB" code="8888" url="[https://moci.cc"}](https://moci.cc"})
 
-::download{title="测试-免费资源" source="下载来源" url="https://moci.cc"}
-
-::download{title="测试：提取码复制" desc="示例：网盘资源需要提取码" size="12.4 MB" code="8888" url="https://moci.cc"}
-
-::download{title="测试：加密资源" desc="需要密码才能下载" size="8.6 MB" password="1234" hint="提示：密码：1234" url="https://moci.cc"}
+::download{title="测试：加密资源" desc="需要密码才能下载" size="8.6 MB" password="1234" hint="提示：密码：1234" url="[https://moci.cc"}](https://moci.cc"})
 在文章正文里用 `::download{...}` 指令即可插入下载按钮，**可以放在文章任意位置**（标题下、正文中间、末尾都行）。
 
 ## 最简用法
@@ -26,8 +39,9 @@ pinned: false
 
 ## 支持的属性
 
+
 | 属性 | 说明 | 示例 |
-| --- | --- | --- |
+| ---------- | ---------------------------------------------- | ----------------------- |
 | `url` | **必填**，下载地址。必须是 http(s) 或 `/` 开头的站内路径 | `"/downloads/demo.zip"` |
 | `title` | 资源名称（`name` 为同义别名） | `"示例包"` |
 | `desc` | 资源简介（`source` 为同义别名，兼容旧写法） | `"合集资源，持续更新"` |
