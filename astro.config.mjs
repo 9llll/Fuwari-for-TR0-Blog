@@ -19,9 +19,12 @@ import { expressiveCodeConfig } from "./src/config.ts";
 import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
 import { pluginLanguageBadge } from "./src/plugins/expressive-code/language-badge.ts";
 import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs";
+import { BtnComponent } from "./src/plugins/rehype-component-btn.mjs";
 import { DownloadComponent } from "./src/plugins/rehype-component-download.mjs";
 import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
 import { PostCardComponent } from "./src/plugins/rehype-component-post-card.mjs";
+import { VideoComponent } from "./src/plugins/rehype-component-video.mjs";
+import { remarkDirectiveHName } from "./src/plugins/remark-directive-hname.mjs";
 import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkPostBadge } from "./src/plugins/remark-post-badge.mjs";
@@ -117,6 +120,7 @@ export default defineConfig({
 			remarkPostBadge,
 			remarkSectionize,
 			parseDirectiveNode,
+			remarkDirectiveHName,
 		],
 		rehypePlugins: [
 			rehypeKatex,
@@ -128,6 +132,8 @@ export default defineConfig({
 						github: GithubCardComponent,
 						download: DownloadComponent,
 						post: PostCardComponent,
+						"btn-link": BtnComponent,
+						"video-embed": VideoComponent,
 						note: (x, y) => AdmonitionComponent(x, y, "note"),
 						tip: (x, y) => AdmonitionComponent(x, y, "tip"),
 						important: (x, y) => AdmonitionComponent(x, y, "important"),
