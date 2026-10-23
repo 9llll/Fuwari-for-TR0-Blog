@@ -1,0 +1,29 @@
+{
+  "title": "羡鱼资源",
+  "avatar": "assets/images/avatar.png",
+  "name": "羡鱼",
+  "bio": "夫唯不争\n故天下莫能与之争。",
+  "links": [
+    {
+      "name": "Home",
+      "icon": "fa6-brands:chrome",
+      "url": "https://www.moci.cc"
+    },
+    {
+      "name": "QQ",
+      "icon": "fa6-brands:qq",
+      "url": "https://pd.qq.com/qqweb/qunpro/share?_wv=3&_wwv=128&appChannel=share&attaContentID=2c2b39108a3646c2b5da95b49c9928b9&biz=ka&businessType=9&from=246610&inviteCode=2DJ40Bau83b&mainSourceId=share&subSourceId=others&b=9"
+    },
+    {
+      "name": "BiliBili",
+      "icon": "fa6-brands:bilibili",
+      "url": "https://space.bilibili.com/3690991479425287"
+    },
+    {
+      "name": "GitHub",
+      "icon": "fa6-brands:github",
+      "url": "https://github.com/9llll"
+    }
+  ],
+  "icp": "陕ICP备2025081382号"
+}

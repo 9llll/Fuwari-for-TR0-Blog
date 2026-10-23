@@ -15,6 +15,13 @@ media:
     categories: [image]
     rename: safe
 
+  - name: site-images
+    label: 站点图片（banner / 头像 / favicon）
+    input: public/images/site
+    output: /images/site
+    categories: [image]
+    rename: safe
+
 # ---------- 内容：文章 ----------
 content:
   - name: posts
@@ -129,3 +136,217 @@ content:
           media: post-images
           path: images
           rename: safe
+
+  # ---------- 站点设置 ----------
+  # 这些文件是站点配置的唯一数据源，src/config.ts 会读取它们并与内置默认值合并，
+  # 所以某一项被清空时会自动回退默认值，不会把站点改崩。
+  - name: site-settings
+    label: 站点设置
+    type: group
+    items:
+      - name: site-info
+        label: 站点信息
+        type: file
+        path: src/data/site.json
+        format: json
+        fields:
+          - name: title
+            label: 站点名称（导航栏与标题）
+            type: string
+            required: true
+
+          - name: description
+            label: 站点简介（首页与 SEO 描述）
+            type: text
+
+          - name: keywords
+            label: 站点关键词（SEO，逗号分隔）
+            type: text
+
+          - name: lang
+            label: 站点语言
+            type: select
+            options:
+              values:
+                - zh_CN
+                - zh_TW
+                - en
+                - ja
+                - ko
+                - es
+                - th
+                - vi
+                - tr
+                - id
+
+          - name: themeColor
+            label: 主题色
+            type: object
+            fields:
+              - name: hue
+                label: 色相（0-360）
+                type: number
+              - name: fixed
+                label: 锁定色相（访客不可调）
+                type: boolean
+
+          - name: banner
+            label: 顶部横幅
+            type: object
+            fields:
+              - name: enable
+                label: 显示横幅
+                type: boolean
+              - name: src
+                label: 横幅图片
+                type: image
+                options:
+                  media: site-images
+              - name: position
+                label: 取景位置
+                type: select
+                options:
+                  values: [top, center, bottom]
+              - name: credit
+                label: 版权信息
+                type: object
+                fields:
+                  - name: enable
+                    label: 显示版权
+                    type: boolean
+                  - name: text
+                    label: 版权文字
+                    type: string
+                  - name: url
+                    label: 版权链接
+                    type: string
+
+          - name: toc
+            label: 文章目录
+            type: object
+            fields:
+              - name: enable
+                label: 显示目录
+                type: boolean
+              - name: depth
+                label: 目录层级（1-3）
+                type: number
+
+          - name: favicon
+            label: 站点图标
+            type: object
+            list: true
+            fields:
+              - name: src
+                label: 图标文件
+                type: image
+                options:
+                  media: site-images
+              - name: theme
+                label: 主题
+                type: select
+                options:
+                  values: [light, dark]
+              - name: sizes
+                label: 尺寸
+                type: string
+
+          - name: license
+            label: 文章许可证
+            type: object
+            fields:
+              - name: enable
+                label: 显示许可证
+                type: boolean
+              - name: name
+                label: 许可证名称
+                type: string
+              - name: url
+                label: 许可证链接
+                type: string
+
+          - name: codeTheme
+            label: 代码块主题
+            type: select
+            options:
+              values:
+                - github-dark
+                - github-dark-dimmed
+                - vitesse-dark
+                - material-theme-palenight
+
+      - name: nav-links
+        label: 导航栏链接
+        type: file
+        path: src/data/nav.json
+        format: json
+        list: true
+        fields:
+          - name: name
+            label: 名称
+            type: string
+          - name: url
+            label: 链接
+            type: string
+            description: "首页填 /，归档填 /archive/，关于填 /about/，其余为自定义页面"
+          - name: external
+            label: 站外链接
+            type: boolean
+
+      - name: profile
+        label: 侧边栏资料
+        type: file
+        path: src/data/profile.json
+        format: json
+        fields:
+          - name: title
+            label: 资料卡标题
+            type: string
+          - name: avatar
+            label: 头像
+            type: image
+            options:
+              media: site-images
+          - name: name
+            label: 昵称
+            type: string
+          - name: bio
+            label: 个性签名
+            type: text
+          - name: icp
+            label: ICP 备案号
+            type: string
+          - name: links
+            label: 社交链接
+            type: object
+            list: true
+            fields:
+              - name: name
+                label: 名称
+                type: string
+              - name: icon
+                label: 图标（Iconify 名称，如 fa6-brands:github）
+                type: string
+              - name: url
+                label: 链接
+                type: string
+
+      - name: friends
+        label: 友情链接
+        type: file
+        path: src/data/friends.json
+        format: json
+        list: true
+        fields:
+          - name: name
+            label: 站点名称
+            type: string
+          - name: url
+            label: 站点地址
+            type: string
+          - name: avatar
+            label: 头像地址
+            type: string
+          - name: description
+            label: 站点简介
+            type: text

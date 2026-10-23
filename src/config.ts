@@ -2,104 +2,168 @@ import type {
 	ExpressiveCodeConfig,
 	LicenseConfig,
 	NavBarConfig,
+	NavBarLink,
 	ProfileConfig,
 	SiteConfig,
 } from "./types/config";
 import { LinkPreset } from "./types/config";
+import friendsData from "./data/friends.json";
+import navData from "./data/nav.json";
+import profileData from "./data/profile.json";
+import siteData from "./data/site.json";
 
-export const siteConfig: SiteConfig = {
+/**
+ * 站点配置的数据源
+ *
+ * 配置内容放在 `src/data/*.json`，由 Pages CMS 在线编辑（见根目录 `.pages.yml`），
+ * 修改后提交到仓库，CI 自动重新构建。
+ *
+ * 这里保留一份内置默认值：CMS 里把某项清空时自动回退到默认值，
+ * 避免一次误操作（清空站名 / 删掉 banner）直接把站点改崩。
+ */
+
+/** 取非空字符串 */
+function str(value: unknown, fallback: string): string {
+	return typeof value === "string" && value.trim() !== "" ? value : fallback;
+}
+
+/** 取布尔值 */
+function bool(value: unknown, fallback: boolean): boolean {
+	return typeof value === "boolean" ? value : fallback;
+}
+
+/** 取数字 */
+function num(value: unknown, fallback: number): number {
+	return typeof value === "number" && !Number.isNaN(value) ? value : fallback;
+}
+
+/* ---------------------------------------------------------------- 站点信息 */
+
+const siteDefaults: SiteConfig = {
 	title: "羡鱼资源",
-	keywords: "羡鱼资源,资源分享,资源网,PC 软件,PC 软件下载,安卓应用,安卓 APP, 实用 APP, 源码,源码分享,开源源码,优质资源,免费资源,无广告资源,绿色软件,手机应用,精品资源,资源合集,资源平台,软件下载,应用推荐,源码下载,雾创岛资源,综合资源网,技术教程,EdgeOne 教程,EdgeOne 配置,Cloudflare 教程,Cloudflare 设置,CDN 技术教程,EdgeOne 使用指南,Cloudflare 优化教程,网络技术教程,服务器技术教程,站长技术资讯,网站技术教程,建站技术分享,服务器运维教程,网站搭建教程,站长工具资源,网站优化技术,服务器配置教程,网站安全技术,站长资源分享,网站源码教程,CDN 站长工具,EdgeOne 站长指南,Cloudflare 站长教程",
-	description: "羡鱼资源专注于优质资源聚合的分享平台，涵盖 PC 软件、安卓应用、实用 APP、各类源码及多领域精品资源，致力于通过精选内容与流畅体验，打造国内用户体验一流的综合性资源分享网站。",
-	lang: "zh_CN", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
-	themeColor: {
-		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
-		fixed: true, // Hide the theme color picker for visitors
-	},
+	keywords: "",
+	description: "",
+	lang: "zh_CN",
+	themeColor: { hue: 250, fixed: true },
 	banner: {
 		enable: true,
-		src: "assets/images/banner.webp", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
+		src: "assets/images/banner.webp",
+		position: "center",
+		credit: { enable: false, text: "", url: "" },
+	},
+	toc: { enable: true, depth: 2 },
+	favicon: [{ src: "/favicon.ico", theme: "light", sizes: "32x32" }],
+};
+
+const site = siteData as Record<string, any>;
+const bannerData = (site.banner ?? {}) as Record<string, any>;
+const creditData = (bannerData.credit ?? {}) as Record<string, any>;
+const themeData = (site.themeColor ?? {}) as Record<string, any>;
+const tocData = (site.toc ?? {}) as Record<string, any>;
+
+export const siteConfig: SiteConfig = {
+	title: str(site.title, siteDefaults.title),
+	keywords: str(site.keywords, siteDefaults.keywords),
+	description: str(site.description, siteDefaults.description),
+	lang: str(site.lang, siteDefaults.lang) as SiteConfig["lang"],
+	themeColor: {
+		hue: num(themeData.hue, siteDefaults.themeColor.hue),
+		fixed: bool(themeData.fixed, siteDefaults.themeColor.fixed),
+	},
+	banner: {
+		enable: bool(bannerData.enable, siteDefaults.banner.enable),
+		src: str(bannerData.src, siteDefaults.banner.src),
+		position: (str(
+			bannerData.position,
+			siteDefaults.banner.position as string,
+		) as SiteConfig["banner"]["position"]),
 		credit: {
-			enable: false, // Display the credit text of the banner image
-			text: "", // Credit text to be displayed
-			url: "", // (Optional) URL link to the original artwork or artist's page
+			enable: bool(creditData.enable, siteDefaults.banner.credit.enable),
+			text: str(creditData.text, siteDefaults.banner.credit.text),
+			url: str(creditData.url, siteDefaults.banner.credit.url ?? ""),
 		},
 	},
 	toc: {
-		enable: true, // Display the table of contents on the right side of the post
-		depth: 2, // Maximum heading depth to show in the table, from 1 to 3
+		enable: bool(tocData.enable, siteDefaults.toc.enable),
+		depth: num(tocData.depth, siteDefaults.toc.depth) as SiteConfig["toc"]["depth"],
 	},
-	favicon: [
-		// Leave this array empty to use the default favicon
-		{
-			src: "/favicon.ico", // Path of the favicon, relative to the /public directory
-			theme: "light", // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
-			sizes: "32x32", // (Optional) Size of the favicon, set only if you have favicons of different sizes
-		},
-	],
+	favicon:
+		Array.isArray(site.favicon) && site.favicon.length > 0
+			? site.favicon
+			: siteDefaults.favicon,
 };
+
+/* ---------------------------------------------------------------- 导航栏 */
+
+/**
+ * 把 CMS 里填的导航项还原成 NavBarLink。
+ * 三个内置页面（首页 / 归档 / 关于）仍走 LinkPreset，
+ * 以保留多语言文案（写死中文会导致切换语言时导航不跟随）。
+ */
+function toNavLink(item: Record<string, any>): NavBarLink | LinkPreset {
+	const url = str(item.url, "").replace(/\/+$/, "") || "/";
+	if (url === "/") return LinkPreset.Home;
+	if (url === "/about") return LinkPreset.About;
+	if (url === "/archive") return LinkPreset.Archive;
+	return {
+		name: str(item.name, "链接"),
+		url: str(item.url, "/"),
+		external: bool(item.external, false),
+	};
+}
 
 export const navBarConfig: NavBarConfig = {
-	links: [
-		LinkPreset.Home,
-		LinkPreset.Archive,
-		LinkPreset.About,
-		{
-			name: "友情链接",
-			url: "/friends/",
-			external: false,
-		}
-	],
+	links:
+		Array.isArray(navData) && navData.length > 0
+			? navData.map((item) => toNavLink(item as Record<string, any>))
+			: [LinkPreset.Home, LinkPreset.Archive, LinkPreset.About],
 };
+
+/* ---------------------------------------------------------------- 侧边栏资料 */
+
+const profile = profileData as Record<string, any>;
 
 export const profileConfig: ProfileConfig = {
-	title: "羡鱼资源",
-	avatar: "assets/images/avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "羡鱼",
-	bio: "夫唯不争\n故天下莫能与之争。",
-	links: [
-		{
-			name: "Home",
-			icon: "fa6-brands:chrome",
-			url: "https://www.moci.cc",
-		},
-		{
-			name: "QQ",
-			icon: "fa6-brands:qq",
-			url: "https://pd.qq.com/qqweb/qunpro/share?_wv=3&_wwv=128&appChannel=share&attaContentID=2c2b39108a3646c2b5da95b49c9928b9&biz=ka&businessType=9&from=246610&inviteCode=2DJ40Bau83b&mainSourceId=share&subSourceId=others&b=9",
-		},
-		{
-			name: "BiliBili",
-			icon: "fa6-brands:bilibili",
-			url: "https://space.bilibili.com/3690991479425287",
-		},
-		{
-			name: "GitHub",
-			icon: "fa6-brands:github",
-			url: "https://github.com/9llll",
-		},
-	],
-	icp: "陕ICP备2025081382号"
+	title: str(profile.title, "羡鱼资源"),
+	avatar: str(profile.avatar, "assets/images/avatar.png"),
+	name: str(profile.name, "羡鱼"),
+	bio: str(profile.bio, ""),
+	links: Array.isArray(profile.links)
+		? profile.links.map((link: Record<string, any>) => ({
+				name: str(link.name, "链接"),
+				icon: str(link.icon, ""),
+				url: str(link.url, "#"),
+			}))
+		: [],
+	icp: str(profile.icp, ""),
 };
 
+/* ---------------------------------------------------------------- 许可证 */
+
+const license = (site.license ?? {}) as Record<string, any>;
+
 export const licenseConfig: LicenseConfig = {
-	enable: true,
-	name: "CC BY-NC-SA 4.0",
-	url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+	enable: bool(license.enable, true),
+	name: str(license.name, "CC BY-NC-SA 4.0"),
+	url: str(license.url, "https://creativecommons.org/licenses/by-nc-sa/4.0/"),
 };
+
+/* ---------------------------------------------------------------- 代码块主题 */
 
 export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	// Note: Some styles (such as background color) are being overridden, see the astro.config.mjs file.
 	// Please select a dark theme, as this blog theme currently only supports dark background color
-	theme: "github-dark",
+	theme: str(site.codeTheme, "github-dark") as ExpressiveCodeConfig["theme"],
 };
 
-export const friends = [
-	{
-		name: "大佬论坛",
-		url: "https://www.dalao.net",
-		avatar: "https://img.alicdn.com/imgextra/i3/1658666455/O1CN01LM00xt1SYbJ0G71c_!!1658666455.png",
-		description: "中文站长论坛，中国域名玩家论坛，专注域名投资、域名收藏交流，实时更新域名行情动态；同时打造互联网综合交流、生活分享平台，汇聚各路资源福利，兼顾站长交流、服务器技术与日常分享，是域名爱好者、投资者与站长的一站式交流社区。"
-	}
-]
+/* ---------------------------------------------------------------- 友情链接 */
+
+export const friends =
+	Array.isArray(friendsData) && friendsData.length > 0
+		? friendsData.map((friend: Record<string, any>) => ({
+				name: str(friend.name, ""),
+				url: str(friend.url, "#"),
+				avatar: str(friend.avatar, ""),
+				description: str(friend.description, ""),
+			}))
+		: [];

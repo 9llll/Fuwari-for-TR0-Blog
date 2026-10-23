@@ -1,0 +1,22 @@
+[
+  {
+    "name": "首页",
+    "url": "/",
+    "external": false
+  },
+  {
+    "name": "归档",
+    "url": "/archive/",
+    "external": false
+  },
+  {
+    "name": "关于",
+    "url": "/about/",
+    "external": false
+  },
+  {
+    "name": "友情链接",
+    "url": "/friends/",
+    "external": false
+  }
+]
