@@ -1,14 +1,26 @@
 ---
-title: "自定义指令说明：按钮与视频"
-published: 2026-10-23
-updated: 2026-10-23
+title: 自定义指令说明：按钮与视频
+description: 本文介绍本站新增的两个 Markdown 自定义指令：::btn 链接按钮与 ::video 视频播放器，包含全部参数说明、可用变体与实际效果演示。
+published: 2026-10-06
+updated: 2026-10-06
+tags:
+  - 指令
+  - 按钮
+  - 视频
+  - 教程
+category:
+  - 教程
+image: src/assets/images/jc.webp
+keywords:
+  - Markdown 自定义指令，::btn 按钮指令，::video 视频指令，::gallery 图片网格，Markdown 扩展语法教程
+author: 羡鱼
+series: 指令
+seriesOrder: 0
+ogImage: https://raw.githubusercontent.com/9llll/Xy-blog/refs/heads/main/src/content/posts/images/xy2.avif
 draft: false
-image: "src/assets/images/jc.webp"
-description: "本文介绍本站新增的两个 Markdown 自定义指令：::btn 链接按钮与 ::video 视频播放器，包含全部参数说明、可用变体与实际效果演示。"
-category: ["教程"]
-tags: ["指令", "按钮", "视频", "教程"]
+pinned: false
+comment: true
 ---
-
 本文介绍 `::btn`（链接按钮）与 `::video`（视频播放器）两个自定义指令的用法。所有示例都是真实可用的，直接照抄即可。
 
 ---
