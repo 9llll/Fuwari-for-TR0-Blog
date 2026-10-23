@@ -9,10 +9,10 @@
   },
   "banner": {
     "enable": true,
-    "src": "assets/images/banner.webp",
+    "src": "/images/site/banner.avif",
     "position": "center",
     "credit": {
-      "enable": false,
+      "enable": true,
       "text": "© 2026 羡鱼网络 版权所有 | 本站资源仅供学习交流，商用请联系原作者",
       "url": "https://www.3x3.top/"
     }
@@ -23,7 +23,7 @@
   },
   "favicon": [
     {
-      "src": "/favicon.ico",
+      "src": "/images/site/9f510fb30f2442a79ec35f0adb43ad4bd013024b.jpg",
       "theme": "light",
       "sizes": "32x32"
     }
