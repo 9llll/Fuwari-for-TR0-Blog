@@ -100,6 +100,10 @@ export default defineConfig({
 	image: {
 		service: {
 			entrypoint: "./src/plugins/image-service-avif.mjs",
+			config: {
+				// AVIF 输出质量（与 WebP 默认的 80 视觉质量相当）
+				quality: 50,
+			},
 		},
 	},
 
