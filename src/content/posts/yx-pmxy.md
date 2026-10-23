@@ -29,7 +29,7 @@ comment: true
 
 > 说明：本文为个人学习收藏所用，仅作技术记录与学习交流之用。请在合法合规的前提下使用，勿用于任何商业用途或非法运营。
 
-::video{src="https://www.bilibili.com/video/BV1nSNoeeE4c" title="缥缈西游搭建教程视频"}
+::video{platform="bilibili" bvid="BV1nSNoeeE4c" title="缥缈西游搭建教程"}
 
 ## 版本更新内容
 
