@@ -13,6 +13,8 @@ tags: ["指令", "按钮", "视频", "教程"]
 
 ---
 
+::video{platform="bilibili" bvid="BV1ZN4y1f7p6" title="视频嵌入示例"}
+
 ## 一、::btn 链接按钮
 
 ### 基本用法
@@ -116,9 +118,7 @@ tags: ["指令", "按钮", "视频", "教程"]
 ::video{platform="bilibili" bvid="BV1fK4y1s7Qf" title="示例视频"}
 ```
 
-渲染效果：
 
-::video{platform="bilibili" bvid="BV1fK4y1s7Qf" title="B 站视频示例"}
 
 ### 参数说明
 
