@@ -1,4 +1,4 @@
-# Fuwari-for-TR0-Blog
+# Xy-Blog
 
 基于 [Fuwari](https://github.com/saicaca/fuwari) 深度魔改的静态博客，站点为 **羡鱼资源**（<https://www.3x3.top>）。
 
