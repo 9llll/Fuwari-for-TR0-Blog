@@ -9,7 +9,7 @@ tags:
   - Fuwari
   - Astro
 category:
-  - 指令
+  - 教程
 image: images/xiazai.avif
 keywords:
   - ::download 演示，Markdown 下载按钮演示，资源下载指令，Astro 下载按钮，静态站下载按钮示例  今天
@@ -22,14 +22,13 @@ draft: false
 pinned: false
 comment: true
 ---
-
 ::github{repo="9llll/home"}
 
-::download{title="测试-免费资源" source="下载来源" url="https://moci.cc"}
+::download{title="测试-免费资源" source="下载来源" url="[https://moci.cc"}](https://moci.cc"})
 
-::download{title="测试：提取码复制" desc="示例：网盘资源需要提取码" size="12.4 MB" code="8888" url="https://moci.cc"}
+::download{title="测试：提取码复制" desc="示例：网盘资源需要提取码" size="12.4 MB" code="8888" url="[https://moci.cc"}](https://moci.cc"})
 
-::download{title="测试：加密资源" desc="需要密码才能下载" size="8.6 MB" password="1234" hint="提示：密码：1234" url="https://moci.cc"}
+::download{title="测试：加密资源" desc="需要密码才能下载" size="8.6 MB" password="1234" hint="提示：密码：1234" url="[https://moci.cc"}](https://moci.cc"})
 
 在文章正文里用 `::download{...}` 指令即可插入下载按钮，**可以放在文章任意位置**（标题下、正文中间、末尾都行）。
 
