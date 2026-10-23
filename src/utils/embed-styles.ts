@@ -60,3 +60,24 @@ export const videoCaption =
 /** 图集网格：多图等宽排列，外层 not-prose 避免被正文排版样式干扰 */
 export const galleryGrid =
 	"not-prose my-4 grid grid-cols-2 gap-2 rounded-xl overflow-hidden md:grid-cols-3 [&>p]:m-0";
+
+/**
+ * 视频点击播放面板（facade）：初始只显示封面 + 播放按钮，
+ * 用户点击后才注入真正的播放器并自动播放。
+ * 这样能解决「iframe 提前加载却看不到播放按钮」「B 站自动播放被拦截」的问题。
+ */
+export const videoFacade =
+	"video-facade group relative block w-full cursor-pointer overflow-hidden rounded-xl bg-black/10 dark:bg-white/10";
+
+/** 封面图：铺满容器，加载失败则露出底层渐变 */
+export const videoFacadeCover =
+	"absolute inset-0 h-full w-full object-cover transition group-hover:scale-[1.02]";
+
+/** 播放按钮：居中圆形 */
+export const videoFacadeBtn =
+	"absolute inset-0 m-auto flex h-16 w-16 items-center justify-center rounded-full " +
+	"bg-black/55 text-white/95 shadow-lg backdrop-blur-sm transition group-hover:scale-110 group-hover:bg-[var(--primary)]";
+
+/** 平台角标（B站 / YouTube / 本地） */
+export const videoFacadeBadge =
+	"absolute bottom-2 left-2 rounded-md bg-black/55 px-2 py-0.5 text-[0.7rem] font-medium text-white/90";

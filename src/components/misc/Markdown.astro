@@ -39,4 +39,59 @@ document.addEventListener("click", function (e: MouseEvent) {
         target.setAttribute("data-timeout-id", newTimeoutId.toString());
     }
 });
+
+// 视频点击播放面板：点击封面后才注入真正的播放器并自动播放
+document.addEventListener("click", function (e: MouseEvent) {
+    const btn = (e.target as Element | null)?.closest("[data-video-facade-play]");
+    if (!btn) return;
+    const facade = btn.closest(".video-facade") as HTMLElement | null;
+    if (!facade || facade.dataset.playing === "1") return;
+
+    const src = facade.dataset.embedSrc ?? "";
+    const type = facade.dataset.embedType ?? "iframe";
+    const poster = facade.dataset.poster ?? "";
+
+    if (type === "video") {
+        const v = document.createElement("video");
+        v.src = src;
+        v.controls = true;
+        v.autoplay = true;
+        v.playsInline = true;
+        if (poster) v.poster = poster;
+        v.className = "absolute inset-0 h-full w-full bg-black";
+        facade.innerHTML = "";
+        facade.appendChild(v);
+        v.play?.().catch(() => {});
+    } else {
+        let finalSrc = src;
+        try {
+            const u = new URL(src);
+            if (!u.searchParams.has("autoplay")) u.searchParams.set("autoplay", "1");
+            if (!u.searchParams.has("danmaku")) u.searchParams.set("danmaku", "0");
+            if (!u.searchParams.has("high_quality")) u.searchParams.set("high_quality", "1");
+            finalSrc = u.toString();
+        } catch {
+            // 相对地址直接使用
+        }
+        const f = document.createElement("iframe");
+        f.src = finalSrc;
+        f.className = "absolute inset-0 h-full w-full";
+        f.setAttribute("frameborder", "0");
+        f.setAttribute("allowfullscreen", "");
+        f.setAttribute(
+            "allow",
+            "autoplay; encrypted-media; clipboard-write; gyroscope; picture-in-picture; web-share",
+        );
+        facade.innerHTML = "";
+        facade.appendChild(f);
+    }
+    facade.dataset.playing = "1";
+});
+
+// 标记了 data-autoplay 的面板：加载后自动触发一次点击
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".video-facade[data-autoplay]").forEach((el) => {
+        (el.querySelector("[data-video-facade-play]") as HTMLElement | null)?.click();
+    });
+});
 </script>

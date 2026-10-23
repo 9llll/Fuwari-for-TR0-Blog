@@ -24,7 +24,7 @@ import { DownloadComponent } from "./src/plugins/rehype-component-download.mjs";
 import { GalleryComponent } from "./src/plugins/rehype-component-gallery.mjs";
 import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
 import { PostCardComponent } from "./src/plugins/rehype-component-post-card.mjs";
-import { VideoComponent } from "./src/plugins/rehype-component-video.mjs";
+import { rehypeVideoFacade } from "./src/plugins/rehype-video-facade.mjs";
 import { remarkDirectiveHName } from "./src/plugins/remark-directive-hname.mjs";
 import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
@@ -133,9 +133,8 @@ export default defineConfig({
 						github: GithubCardComponent,
 						download: DownloadComponent,
 						post: PostCardComponent,
-						"btn-link": BtnComponent,
-						"video-embed": VideoComponent,
-						"gallery-embed": GalleryComponent,
+					"btn-link": BtnComponent,
+					"gallery-embed": GalleryComponent,
 						note: (x, y) => AdmonitionComponent(x, y, "note"),
 						tip: (x, y) => AdmonitionComponent(x, y, "tip"),
 						important: (x, y) => AdmonitionComponent(x, y, "important"),
@@ -144,6 +143,7 @@ export default defineConfig({
 					},
 				},
 			],
+			rehypeVideoFacade,
 			[
 				rehypeAutolinkHeadings,
 				{
