@@ -67,8 +67,8 @@ export default defineConfig({
 				borderRadius: "0.75rem",
 				borderColor: "none",
 				codeFontSize: "0.875rem",
-			codeFontFamily:
-				"'Maple Mono NF CN', 'Maple Mono CN', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+				codeFontFamily:
+					"'Maple Mono NF CN', 'Maple Mono CN', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
 				codeLineHeight: "1.5rem",
 				frames: {
 					editorBackground: "var(--codeblock-bg)",
@@ -94,6 +94,15 @@ export default defineConfig({
 		svelte(),
 		sitemap(),
 	],
+
+	// 全站图片统一输出 AVIF 格式（覆盖 Astro 默认的 WebP）
+	// 实现见 src/plugins/image-service-avif.mjs
+	image: {
+		service: {
+			entrypoint: "./src/plugins/image-service-avif.mjs",
+		},
+	},
+
 	markdown: {
 		remarkPlugins: [
 			remarkMath,
