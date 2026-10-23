@@ -10,7 +10,7 @@ tags:
   - 教程
 category:
   - 教程
-image: src/assets/images/jc.webp
+image: images/shipin.avif
 keywords:
   - Markdown 自定义指令，::btn 按钮指令，::video 视频指令，::gallery 图片网格，Markdown 扩展语法教程
 author: 羡鱼
@@ -37,12 +37,13 @@ comment: true
 
 渲染效果：
 
-::btn{href="https://example.com" text="点我" icon="arrow"}
+::btn{href="[https://example.com](https://example.com)" text="点我" icon="arrow"}
 
 ### 参数说明
 
+
 | 参数 | 必填 | 说明 |
-| --- | :---: | --- |
+| --------- | --- | -------------------------------------------------------------- |
 | `href` | ✅ | 链接地址。支持 `http(s)://` 开头，或以 `/`、`./`、`../` 开头的站内相对路径 |
 | `text` | ✅ | 按钮上显示的文字（也兼容 `title` / `label`） |
 | `variant` | — | 按钮样式，见下方变体表。默认 `primary` |
@@ -50,33 +51,37 @@ comment: true
 | `target` | — | 链接打开方式。`blank` 表示新窗口打开（自动补 `rel="noopener noreferrer"`），默认当前窗口 |
 | `block` | — | 传 `true` 则按钮独占一行（宽度 100%） |
 
+
 > `href` 只接受 `http(s)` 与站内相对路径。像 `javascript:` 这类协议会被直接拒绝，不会渲染出按钮——这是为了防止在文章里埋入可执行脚本。
 
 ### 样式变体
 
+
 | `variant` | 效果 |
-| --- | --- |
+| ----------- | --------- |
 | `primary` | 实心主色（默认） |
 | `secondary` | 浅底主色 |
 | `outline` | 描边 |
 | `ghost` | 无边框，悬停才显形 |
 
+
 四个变体放在一起对比：
 
-::btn{href="https://example.com" text="主要" variant="primary" icon="download"}
+::btn{href="[https://example.com](https://example.com)" text="主要" variant="primary" icon="download"}
 
-::btn{href="https://example.com" text="次要" variant="secondary" icon="external"}
+::btn{href="[https://example.com](https://example.com)" text="次要" variant="secondary" icon="external"}
 
-::btn{href="https://example.com" text="描边" variant="outline" icon="arrow"}
+::btn{href="[https://example.com](https://example.com)" text="描边" variant="outline" icon="arrow"}
 
-::btn{href="https://example.com" text="幽灵" variant="ghost" icon="star"}
+::btn{href="[https://example.com](https://example.com)" text="幽灵" variant="ghost" icon="star"}
 
 ### 图标
 
 `icon` 支持以下取值（也支持包含这些关键字的其他写法，如 `icon="fa-download"` 会被识别为下载图标）：
 
+
 | 图标名 | 用途 |
-| --- | --- |
+| ---------- | -------- |
 | `download` | 下载 |
 | `external` | 站外链接 |
 | `arrow` | 箭头 |
@@ -86,33 +91,34 @@ comment: true
 | `info` | 信息 |
 | `star` | 收藏 |
 
+
 实际效果：
 
-::btn{href="https://example.com" text="下载" variant="secondary" icon="download"}
+::btn{href="[https://example.com](https://example.com)" text="下载" variant="secondary" icon="download"}
 
-::btn{href="https://example.com" text="外部链接" variant="secondary" icon="external"}
+::btn{href="[https://example.com](https://example.com)" text="外部链接" variant="secondary" icon="external"}
 
-::btn{href="https://example.com" text="前往" variant="secondary" icon="arrow"}
+::btn{href="[https://example.com](https://example.com)" text="前往" variant="secondary" icon="arrow"}
 
-::btn{href="https://example.com" text="播放" variant="secondary" icon="play"}
+::btn{href="[https://example.com](https://example.com)" text="播放" variant="secondary" icon="play"}
 
-::btn{href="https://example.com" text="链接" variant="secondary" icon="link"}
+::btn{href="[https://example.com](https://example.com)" text="链接" variant="secondary" icon="link"}
 
-::btn{href="https://example.com" text="完成" variant="secondary" icon="check"}
+::btn{href="[https://example.com](https://example.com)" text="完成" variant="secondary" icon="check"}
 
-::btn{href="https://example.com" text="说明" variant="secondary" icon="info"}
+::btn{href="[https://example.com](https://example.com)" text="说明" variant="secondary" icon="info"}
 
-::btn{href="https://example.com" text="收藏" variant="secondary" icon="star"}
+::btn{href="[https://example.com](https://example.com)" text="收藏" variant="secondary" icon="star"}
 
 ### 其它用法
 
 **新窗口打开**
 
-::btn{href="https://example.com" text="新窗口打开" variant="primary" target="blank" icon="external"}
+::btn{href="[https://example.com](https://example.com)" text="新窗口打开" variant="primary" target="blank" icon="external"}
 
 **独占一行**（移动端尤其有用）
 
-::btn{href="https://example.com" text="这个按钮独占整行" variant="primary" block="true" icon="download"}
+::btn{href="[https://example.com](https://example.com)" text="这个按钮独占整行" variant="primary" block="true" icon="download"}
 
 **指向站内文件**
 
@@ -139,8 +145,9 @@ comment: true
 
 ### 参数说明
 
+
 | 参数 | 必填 | 说明 |
-| --- | :---: | --- |
+| ---------- | --- | -------------------------------------------- |
 | `src` | 视情况 | 视频地址。本地路径、远程视频文件、或第三方嵌入地址 |
 | `platform` | — | `youtube` 或 `bilibili`，配合 `id` / `bvid` 使用 |
 | `id` | 视情况 | 平台视频 ID（YouTube 用），与 `platform="youtube"` 搭配 |
@@ -151,6 +158,7 @@ comment: true
 | `autoplay` | — | 传 `true` 自动播放（仅本地视频可靠） |
 | `loop` | — | 传 `true` 循环播放 |
 | `muted` | — | 传 `true` 静音播放 |
+
 
 ### 三种来源
 
@@ -217,12 +225,14 @@ comment: true
 
 ### 说明
 
+
 | 要点 | 说明 |
-| --- | --- |
+| --- | ----------------------------------------------- |
 | 布局 | 默认 2 列，中等屏幕（≥768px）自动变 3 列 |
 | 灯箱 | 图片自动接入 PhotoSwipe，点击放大、滚轮缩放、点击关闭 |
 | 图片 | 和正文图片一样，放在 `src/content/posts/images`，CMS 里插入即可 |
 | 空块 | 若指令内没有任何图片，不会渲染任何内容 |
+
 
 ---
 
@@ -230,13 +240,15 @@ comment: true
 
 文章 Frontmatter 里新增了几个字段，在 Pages CMS 编辑器的「文章」里即可填写：
 
+
 | 字段 | 作用 |
-| --- | --- |
+| ------------- | ---------------------------------------------------- |
 | `keywords` | 页面 `<meta name="keywords">` 与结构化数据关键词（逗号分隔或逐条添加） |
 | `author` | 覆盖站点默认作者名，写入 `<meta name="author">` 与 JSON-LD |
 | `series` | 系列名称；填写后文章底部自动出现「系列文章」导航（上一篇 / 下一篇） |
 | `seriesOrder` | 同系列内的排序，数字越小越靠前 |
 | `ogImage` | 社交分享图（OG Image），建议填完整 `http(s)` 链接，用于微信 / Twitter 卡片 |
+
 
 系列导航举例：把两篇文章都填上 `series: "新手教程"`，分别设 `seriesOrder: 1` 和 `seriesOrder: 2`，
 站点就会在各自文末给出指向彼此的「上一篇 / 下一篇」入口。
@@ -281,12 +293,14 @@ src/utils/embed-styles.ts
 
 改这个文件，全站所有按钮与视频都会跟着变，不用逐篇文章调整。
 
+
 | 文件 | 作用 |
-| --- | --- |
+| ---------------------------------------- | ----------------------- |
 | `src/utils/embed-styles.ts` | 按钮与视频的全部样式（尺寸、圆角、配色、间距） |
 | `src/plugins/rehype-component-btn.mjs` | `::btn` 的渲染逻辑与参数校验 |
 | `src/plugins/rehype-component-video.mjs` | `::video` 的渲染逻辑与参数校验 |
 | `src/plugins/remark-directive-hname.mjs` | 指令名与 HTML 标签冲突的处理 |
+
 
 按钮配色用的是主题色变量（`--primary` / `--primary-soft`），所以在 `src/config.ts` 里改主题色（`themeColor.hue`），所有按钮会自动跟着变。
 
@@ -296,11 +310,13 @@ src/utils/embed-styles.ts
 
 本站还有这些自定义指令可用：
 
+
 | 指令 | 用途 |
-| --- | --- |
+| ---------------------------------------------------------------- | -------------------- |
 | `::download{...}` | 下载按钮，支持提取码、访问密码、地址混淆 |
 | `::post{id="..."}` | 在文章里引用另一篇文章的卡片 |
 | `::github{repo="..."}` | GitHub 仓库卡片 |
 | `::note{}` `::tip{}` `::important{}` `::caution{}` `::warning{}` | 提示框 |
+
 
 各指令的详细参数见对应文章。
