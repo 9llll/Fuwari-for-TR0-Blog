@@ -25,7 +25,7 @@ comment: true
 ## 最简用法
 
 ```markdown
-::download{title="雾创岛" url="https://github.com/onexru/Fuwari-for-TR0-Blog"}
+::download{title="羡鱼资源" url="https://github.com/9llll/Xy-blog"}
 ```
 
 ## 支持的属性
