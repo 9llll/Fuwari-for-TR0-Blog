@@ -4,6 +4,7 @@ import path from "node:path";
 import { Icon } from "astro-icon/components";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
+import { resolveCoverImage } from "../utils/cover-image";
 import { getDir } from "../utils/url-utils";
 import ImageWrapper from "./misc/ImageWrapper.astro";
 import PostCoverPlaceholder from "./misc/PostCoverPlaceholder.astro";
@@ -57,8 +58,10 @@ const coverType =
 const isDefaultCover = /^\/images\/default-(tutorial|download)\.png$/.test(
 	image,
 );
-const hasCover =
-	!isDefaultCover && image !== undefined && image !== null && image !== "";
+
+// image 为 "api" 时表示使用随机封面图 API，解析为带 seed 的实际地址
+const coverImage = isDefaultCover ? image : resolveCoverImage(image, entry.id);
+const hasCover = !isDefaultCover && coverImage !== "";
 
 // 从URL路径中提取文章ID
 const extractArticleId = (urlPath: string) => {
@@ -88,7 +91,7 @@ const articleId = extractArticleId(url);
       <a href={url} aria-label={title} class="block h-full w-full group">
         {hasCover ? (
           <ImageWrapper
-            src={image}
+            src={coverImage}
             basePath={path.join("content/posts/", getDir(entry.id))}
             alt="Cover image of the post"
             class="w-full h-full object-cover"

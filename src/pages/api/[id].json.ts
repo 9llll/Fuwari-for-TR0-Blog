@@ -2,6 +2,7 @@ import { getImage } from "astro:assets";
 import { getCollection } from "astro:content";
 import type { APIRoute, ImageMetadata } from "astro";
 import MarkdownIt from "markdown-it";
+import { isApiCover, resolveCoverImage } from "../../utils/cover-image";
 
 // 预加载 src/assets 下的图片，用于把 frontmatter 中的相对路径
 // 解析成 Astro 构建后的 /_astro/xxx.webp 真实地址。
@@ -13,13 +14,19 @@ const assetImages = import.meta.glob<ImageMetadata>("../../assets/**", {
 // 把 frontmatter 的 image 字段解析为可访问的 URL：
 //   - 远程图片（http/https）：原样返回
 //   - public/ 绝对路径（以 / 开头）：原样返回
+//   - "api"：随机封面图 API（带 seed 参数，保证同一文章封面稳定）
 //   - src/assets/... 相对路径：解析为 Astro 优化后的 /_astro/... 地址
-async function resolveImageUrl(p: unknown): Promise<string> {
+async function resolveImageUrl(p: unknown, seed?: string): Promise<string> {
 	const fallback = "/favicon/favicon-32x32.png";
 	if (!p || typeof p !== "string") return fallback;
 	const s = String(p).trim();
 	if (s.startsWith("http://") || s.startsWith("https://") || s.startsWith("/"))
 		return s;
+
+	// 随机封面图：解析为带 seed 的 API 地址
+	if (isApiCover(s)) {
+		return resolveCoverImage(s, seed) || fallback;
+	}
 
 	const filename = s
 		.replace(/^\.?\//, "")
@@ -87,9 +94,9 @@ export const GET: APIRoute = async ({ params }) => {
 
 		// 处理图片路径：把 frontmatter 中的 src/assets/... 相对路径
 		// 解析为 Astro 构建后的 /_astro/... 真实地址（否则图片 404 不显示）
-		const frontmatter = article.data;
-		const imageUrlNormalized = await resolveImageUrl(frontmatter?.image);
-		const a = article!; // 非空断言，已在上方判空
+		const a = article;
+		const frontmatter = a.data;
+		const imageUrlNormalized = await resolveImageUrl(frontmatter?.image, a.id);
 
 		// 使用markdown-it渲染HTML
 		const md = new MarkdownIt();
