@@ -1,7 +1,7 @@
 {
   "title": "羡鱼资源",
-  "keywords": "羡鱼资源,资源分享,资源网,PC 软件,PC 软件下载,安卓应用,安卓 APP, 实用 APP, 源码,源码分享,开源源码,优质资源,免费资源,无广告资源,绿色软件,手机应用,精品资源,资源合集,资源平台,软件下载,应用推荐,源码下载,雾创岛资源,综合资源网,技术教程,EdgeOne 教程,EdgeOne 配置,Cloudflare 教程,Cloudflare 设置,CDN 技术教程,EdgeOne 使用指南,Cloudflare 优化教程,网络技术教程,服务器技术教程,站长技术资讯,网站技术教程,建站技术分享,服务器运维教程,网站搭建教程,站长工具资源,网站优化技术,服务器配置教程,网站安全技术,站长资源分享,网站源码教程,CDN 站长工具,EdgeOne 站长指南,Cloudflare 站长教程",
   "description": "羡鱼资源专注于优质资源聚合的分享平台，涵盖 PC 软件、安卓应用、实用 APP、各类源码及多领域精品资源，致力于通过精选内容与流畅体验，打造国内用户体验一流的综合性资源分享网站。",
+  "keywords": "羡鱼资源,资源分享,资源网,PC 软件,PC 软件下载,安卓应用,安卓 APP, 实用 APP, 源码,源码分享,开源源码,优质资源,免费资源,无广告资源,绿色软件,手机应用,精品资源,资源合集,资源平台,软件下载,应用推荐,源码下载,雾创岛资源,综合资源网,技术教程,EdgeOne 教程,EdgeOne 配置,Cloudflare 教程,Cloudflare 设置,CDN 技术教程,EdgeOne 使用指南,Cloudflare 优化教程,网络技术教程,服务器技术教程,站长技术资讯,网站技术教程,建站技术分享,服务器运维教程,网站搭建教程,站长工具资源,网站优化技术,服务器配置教程,网站安全技术,站长资源分享,网站源码教程,CDN 站长工具,EdgeOne 站长指南,Cloudflare 站长教程",
   "lang": "zh_CN",
   "themeColor": {
     "hue": 250,
@@ -13,8 +13,8 @@
     "position": "center",
     "credit": {
       "enable": false,
-      "text": "",
-      "url": ""
+      "text": "© 2026 羡鱼网络 版权所有 | 本站资源仅供学习交流，商用请联系原作者",
+      "url": "https://www.3x3.top/"
     }
   },
   "toc": {
@@ -33,5 +33,5 @@
     "name": "CC BY-NC-SA 4.0",
     "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
   },
-  "codeTheme": "github-dark"
+  "codeTheme": "github-dark-dimmed"
 }
