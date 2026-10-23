@@ -1,13 +1,25 @@
 ---
-title: '下载按钮使用说明'
+title: 下载按钮使用说明
+description: 如何在文章任意位置插入下载按钮，支持网盘提取码与独立密码保护
 published: 2026-10-01
+updated: 2026-10-01
+tags:
+  - 下载按钮
+  - 教程
+  - 指令
+category:
+  - 教程
+image: images/wendang.avif
+keywords:
+  - ::download 下载按钮，Markdown 下载指令，羡鱼资源下载按钮，静态站下载按钮，Markdown 资源下载按钮教程
+author: 羡鱼
+series: 指令
+seriesOrder: 0
+ogImage: https://raw.githubusercontent.com/9llll/Xy-blog/refs/heads/main/src/content/posts/images/fenxiang.avif
 draft: false
-image: "src/assets/images/jc.webp"
-description: '如何在文章任意位置插入下载按钮，支持网盘提取码与独立密码保护'
-category: ["教程"]
-tags: ["下载按钮", "教程"]
+pinned: false
+comment: true
 ---
-
 在文章正文里用 `::download{...}` 指令即可插入下载按钮，**可以放在文章任意位置**（标题下、正文中间、末尾都行）。
 
 ## 最简用法
@@ -18,8 +30,9 @@ tags: ["下载按钮", "教程"]
 
 ## 支持的属性
 
+
 | 属性 | 说明 | 示例 |
-| --- | --- | --- |
+| ---------- | ---------------------------------------------- | ----------------------- |
 | `url` | **必填**，下载地址。必须是 http(s) 或 `/` 开头的站内路径 | `"/downloads/demo.zip"` |
 | `title` | 资源名称（`name` 为同义别名） | `"示例包"` |
 | `desc` | 资源简介（`source` 为同义别名，兼容旧写法） | `"合集资源，持续更新"` |
@@ -28,6 +41,7 @@ tags: ["下载按钮", "教程"]
 | `hint` | 密码提示，仅在设置密码时有意义 | `"提示：四位数字"` |
 | `password` | 访问密码，独立于文章密码 | `"1234"` |
 | `icon` | 图标类型：`zip` / `image` / `file` / `lock` / `key` | `"zip"` |
+
 
 ## 完整示例
 
