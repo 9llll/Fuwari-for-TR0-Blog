@@ -35,7 +35,7 @@ image: src/content/posts/images/xy-xxdz.avif
 12. **一键扩容背包/仓库**（500 格）
 13. **五行修炼一键满级**
 
-![版本示意图](./images/pmxy-xxdz-cover.avif)
+![版本示意图](./images/xy-xxdz.avif)
 
 ## 整合包内容
 
