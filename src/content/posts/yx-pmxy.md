@@ -49,7 +49,7 @@ image: src/content/posts/images/xy-xxdz.avif
 | 安卓端         | Android 客户端             |
 | 苹果端         | iOS 客户端                 |
 
-
+::video{src="https://www.bilibili.com/video/BV1nSNoeeE4c/" title="缥缈西游搭建教程视频"}
 ## 搭建要点提示
 
 - **服务端**：本版本为 Linux 手工服务端，部署前请确认已配置好 Java 与 MySQL 等基础运行环境，具体版本要求以包内说明为准。
