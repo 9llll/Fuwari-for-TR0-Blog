@@ -17,6 +17,8 @@ image: src/content/posts/images/xy-xxdz.avif
 
 > 说明：本文为个人学习收藏所用，仅作技术记录与学习交流之用。请在合法合规的前提下使用，勿用于任何商业用途或非法运营。
 
+::video{src="https://www.bilibili.com/video/BV1nSNoeeE4c/" title="缥缈西游搭建教程视频"}
+
 ## 版本更新内容
 
 本版本在功能与体验上做了如下调整与修复：
@@ -49,7 +51,6 @@ image: src/content/posts/images/xy-xxdz.avif
 | 安卓端         | Android 客户端             |
 | 苹果端         | iOS 客户端                 |
 
-::video{src="https://www.bilibili.com/video/BV1nSNoeeE4c/" title="缥缈西游搭建教程视频"}
 ## 搭建要点提示
 
 - **服务端**：本版本为 Linux 手工服务端，部署前请确认已配置好 Java 与 MySQL 等基础运行环境，具体版本要求以包内说明为准。
