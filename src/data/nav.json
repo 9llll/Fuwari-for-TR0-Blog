@@ -10,13 +10,13 @@
     "external": false
   },
   {
-    "name": "关于",
-    "url": "/about/",
+    "name": "友情链接",
+    "url": "/friends/",
     "external": false
   },
   {
-    "name": "友情链接",
-    "url": "/friends/",
+    "name": "关于",
+    "url": "/about/",
     "external": false
   }
 ]
