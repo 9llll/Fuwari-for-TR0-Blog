@@ -8,7 +8,7 @@ category: 游戏源码
 draft: false
 pinned: false
 comment: true
-image: api
+image: src/content/posts/images/xy-xxdz.avif
 ---
 ## 下载与提取码
 ::download{name="【🔒加密资源】缥缈西游之小熊定制" url="https://pan.baidu.com/s/1cwReoLRHsPZYPw-pZt9quQ" desc="Linux 手工服务端搭建与管理后台、CDK 后台、安卓与苹果双端客户端，以及本版本相对前代修复与调整的完整清单。" size="4 GB" code="9jd4" password="10068" hint="联系：golooo@qq.com"}
