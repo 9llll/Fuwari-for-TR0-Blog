@@ -23,11 +23,27 @@ const categorySchema = z
 	.optional()
 	.default([]);
 
+/**
+ * 日期字段容错解析。
+ *
+ * Pages CMS 等外部编辑器写入的日期可能是带引号的字符串
+ * （如 published: "2026-10-23"），若 schema 严格只接受 Date，
+ * Astro 同步内容时会抛错并中断整个构建。这里统一把字符串转成 Date。
+ */
+const dateSchema = z.preprocess((val: unknown): unknown => {
+	if (val instanceof Date) return val;
+	if (typeof val === "string" && val.trim()) {
+		const d = new Date(val);
+		return Number.isNaN(d.getTime()) ? val : d;
+	}
+	return val;
+}, z.date());
+
 const postsCollection = defineCollection({
 	schema: z.object({
 		title: z.string(),
-		published: z.date(),
-		updated: z.date().optional(),
+		published: dateSchema,
+		updated: dateSchema.optional(),
 		draft: z.boolean().optional().default(false),
 		description: z.string().optional().default(""),
 		image: z.string().optional().default(""),

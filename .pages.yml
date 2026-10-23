@@ -1,0 +1,104 @@
+# Pages CMS 配置（https://app.pagescms.org/）
+# 仓库根目录放这个文件，Pages CMS 会自动识别。
+# 改动会直接以 commit 形式提交到 GitHub，由部署平台自动触发构建。
+
+# ---------- 媒体库：文章图片 ----------
+# 注意：Pages CMS 的媒体目录是固定路径，不支持按文章自动分子文件夹；
+# 统一存到 src/content/posts/images，上传时会自动把文件名转成 slug 避免互相覆盖。
+# output 写相对路径 images/，正文里生成 ![](images/xxx.jpg)，
+# 主题会按「文章同级目录」解析，构建后自动转成 /_astro/... 优化图。
+media:
+  - name: post-images
+    label: 文章图片
+    input: src/content/posts/images
+    output: images
+    categories: [image]
+    rename: safe
+
+# ---------- 内容：文章 ----------
+content:
+  - name: posts
+    label: 文章
+    type: collection
+    path: src/content/posts
+    format: yaml-frontmatter
+    # 新建文章时可以自定义文件名（如 yx-xxx.md），默认用标题
+    filename:
+      template: "{primary}.md"
+      field: create
+    exclude: ["images"]
+    view:
+      primary: title
+      fields: [title, published, draft, pinned]
+      default:
+        sort: published
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+
+      - name: description
+        label: 简介（列表页摘要 / SEO 描述）
+        type: text
+        optional: true
+
+      - name: published
+        label: 发布日期
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+
+      - name: updated
+        label: 更新日期（留空则不显示）
+        type: date
+        optional: true
+        options:
+          format: yyyy-MM-dd
+
+      - name: tags
+        label: 标签（回车添加多个）
+        type: string
+        list: true
+        optional: true
+
+      - name: category
+        label: 分类（回车添加多个）
+        type: string
+        list: true
+        optional: true
+
+      - name: image
+        label: 封面图（留空 = 用正文第一张图，正文也没图则用随机封面 API）
+        type: image
+        optional: true
+
+      - name: draft
+        label: 草稿（开启后不在站点显示）
+        type: boolean
+        default: false
+
+      - name: pinned
+        label: 置顶
+        type: boolean
+        default: false
+
+      - name: comment
+        label: 开启评论
+        type: boolean
+        default: true
+
+      - name: body
+        label: 正文
+        type: rich-text
+        options:
+          format: markdown
+          # 默认是所见即所得编辑器；::btn / ::video / ::download 这类
+          # 自定义指令请点右上角切换到「Source / 源码」模式编辑
+          switcher: true
+          # 插入图片时存到上面的 post-images 媒体库
+          media: post-images
+          path: images
+          rename: safe

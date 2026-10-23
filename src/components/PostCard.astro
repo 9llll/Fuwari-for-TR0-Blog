@@ -59,8 +59,20 @@ const isDefaultCover = /^\/images\/default-(tutorial|download)\.png$/.test(
 	image,
 );
 
+// 封面回退链：frontmatter image → 正文第一张图 → 随机封面 API。
+// 正文第一张图从 markdown 原文提取（支持 ![]() 和 <img> 两种写法），
+// 这样在 CMS 里只传图不填封面字段也能有封面。
+const body = entry.body ?? "";
+const firstBodyImage =
+	body.match(/!\[[^\]]*\]\(\s*<?([^\s)>]+)>?[^)]*\)/)?.[1] ??
+	body.match(/<img[^>]+src=["']([^"']+)["']/i)?.[1] ??
+	"";
+const coverSource = (image ?? "").trim() || firstBodyImage || "api";
+
 // image 为 "api" 时表示使用随机封面图 API，解析为带 seed 的实际地址
-const coverImage = isDefaultCover ? image : resolveCoverImage(image, entry.id);
+const coverImage = isDefaultCover
+	? image
+	: resolveCoverImage(coverSource, entry.id);
 const hasCover = !isDefaultCover && coverImage !== "";
 
 // 从URL路径中提取文章ID
