@@ -21,6 +21,7 @@ import { pluginLanguageBadge } from "./src/plugins/expressive-code/language-badg
 import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs";
 import { BtnComponent } from "./src/plugins/rehype-component-btn.mjs";
 import { DownloadComponent } from "./src/plugins/rehype-component-download.mjs";
+import { GalleryComponent } from "./src/plugins/rehype-component-gallery.mjs";
 import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
 import { PostCardComponent } from "./src/plugins/rehype-component-post-card.mjs";
 import { VideoComponent } from "./src/plugins/rehype-component-video.mjs";
@@ -134,6 +135,7 @@ export default defineConfig({
 						post: PostCardComponent,
 						"btn-link": BtnComponent,
 						"video-embed": VideoComponent,
+						"gallery-embed": GalleryComponent,
 						note: (x, y) => AdmonitionComponent(x, y, "note"),
 						tip: (x, y) => AdmonitionComponent(x, y, "tip"),
 						important: (x, y) => AdmonitionComponent(x, y, "important"),

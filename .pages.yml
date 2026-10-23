@@ -75,6 +75,33 @@ content:
         type: image
         optional: true
 
+      - name: keywords
+        label: 关键词（SEO，逗号分隔或逐条添加）
+        type: string
+        list: true
+        optional: true
+
+      - name: author
+        label: 作者（留空用站点默认作者）
+        type: string
+        optional: true
+
+      - name: series
+        label: 系列名称（留空表示不属于任何系列）
+        type: string
+        optional: true
+
+      - name: seriesOrder
+        label: 系列内排序（数字越小越靠前）
+        type: number
+        optional: true
+        default: 0
+
+      - name: ogImage
+        label: 社交分享图 OG Image（填完整 http(s) 链接）
+        type: string
+        optional: true
+
       - name: draft
         label: 草稿（开启后不在站点显示）
         type: boolean
@@ -95,8 +122,8 @@ content:
         type: rich-text
         options:
           format: markdown
-          # 默认是所见即所得编辑器；::btn / ::video / ::download 这类
-          # 自定义指令请点右上角切换到「Source / 源码」模式编辑
+          # 默认是所见即所得编辑器；::btn / ::video / ::download / ::gallery
+          # 这类自定义指令请点右上角切换到「Source / 源码」模式编辑
           switcher: true
           # 插入图片时存到上面的 post-images 媒体库
           media: post-images

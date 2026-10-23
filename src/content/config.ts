@@ -49,6 +49,32 @@ const postsCollection = defineCollection({
 		image: z.string().optional().default(""),
 		tags: z.array(z.string()).optional().default([]),
 		category: categorySchema,
+
+		/** SEO：关键词，逗号分隔或数组 */
+		keywords: z
+			.preprocess((val: unknown): string[] => {
+				if (val === undefined || val === null) return [];
+				if (Array.isArray(val)) return val.map(String).filter(Boolean);
+				return String(val)
+					.split(/[,，]/)
+					.map((s) => s.trim())
+					.filter(Boolean);
+			}, z.array(z.string()))
+			.optional()
+			.default([]),
+
+		/** 作者（默认用站点全局作者，可单篇覆盖） */
+		author: z.string().optional().default(""),
+
+		/** 系列文章名称；留空表示不属于任何系列 */
+		series: z.string().optional().default(""),
+
+		/** 同系列内的排序序号，越小越靠前 */
+		seriesOrder: z.number().optional().default(0),
+
+		/** 社交分享图（OG Image），建议填完整 http(s) 链接 */
+		ogImage: z.string().optional().default(""),
+
 		lang: z.string().optional().default(""),
 		pinned: z.boolean().optional().default(false),
 		/** 是否开启评论（保留字段，兼容其他来源的写法） */

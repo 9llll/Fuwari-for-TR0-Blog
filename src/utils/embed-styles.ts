@@ -56,3 +56,7 @@ export const videoMedia =
 /** 视频下方的标题说明 */
 export const videoCaption =
 	"mt-2 text-center text-[0.8rem] leading-snug text-black/50 dark:text-white/50";
+
+/** 图集网格：多图等宽排列，外层 not-prose 避免被正文排版样式干扰 */
+export const galleryGrid =
+	"not-prose my-4 grid grid-cols-2 gap-2 rounded-xl overflow-hidden md:grid-cols-3 [&>p]:m-0";

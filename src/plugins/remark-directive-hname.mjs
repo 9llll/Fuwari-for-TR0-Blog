@@ -17,6 +17,7 @@ import { visit } from "unist-util-visit";
 const RENAMED = {
 	video: "video-embed",
 	btn: "btn-link",
+	gallery: "gallery-embed",
 };
 
 export function remarkDirectiveHName() {

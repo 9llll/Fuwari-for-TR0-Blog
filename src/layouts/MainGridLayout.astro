@@ -25,9 +25,11 @@ interface Props {
 	lang?: string;
 	setOGTypeArticle?: boolean;
 	headings?: MarkdownHeading[];
+	keywords?: string;
+	ogImage?: string;
 }
 
-const { title, banner, lang, setOGTypeArticle, headings = [] } = Astro.props;
+const { title, banner, description, lang, setOGTypeArticle, headings = [], keywords, ogImage } = Astro.props;
 const hasBannerCredit =
 	siteConfig.banner.enable && siteConfig.banner.credit.enable;
 const hasBannerLink = !!siteConfig.banner.credit.url;
@@ -47,7 +49,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
 );
 ---
 
-<Layout title={title} banner={banner} keywords={siteConfig.keywords} description={siteConfig.description} lang={lang} setOGTypeArticle={setOGTypeArticle}>
+<Layout title={title} banner={banner} keywords={keywords || siteConfig.keywords} description={description || siteConfig.description} lang={lang} setOGTypeArticle={setOGTypeArticle} ogImage={ogImage}>
 
 <!-- 加载动画 -->
 <div id="loading-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-gray-900 transition-opacity duration-500">

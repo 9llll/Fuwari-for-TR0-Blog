@@ -23,9 +23,11 @@ interface Props {
 	description?: string;
 	lang?: string;
 	setOGTypeArticle?: boolean;
+	/** 社交分享图（OG Image），完整 http(s) 链接 */
+	ogImage?: string;
 }
 
-let { title, banner, description, keywords, lang, setOGTypeArticle } =
+let { title, banner, description, keywords, lang, setOGTypeArticle, ogImage } =
 	Astro.props;
 
 // apply a class to the body element to decide the height of the banner, only used for initial page load
@@ -95,6 +97,12 @@ const bannerOffset =
 		<meta property="twitter:url" content={Astro.url}>
 		<meta name="twitter:title" content={pageTitle}>
 		<meta name="twitter:description" content={description || pageTitle}>
+		{ogImage && (
+			<>
+				<meta property="og:image" content={ogImage} />
+				<meta name="twitter:image" content={ogImage} />
+			</>
+		)}
 
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
