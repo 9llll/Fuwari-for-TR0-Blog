@@ -12,6 +12,8 @@ media:
     label: 文章图片
     input: src/content/posts/images
     output: images
+    # 打开媒体浏览器 / 插入图片弹窗时，默认定位到这个目录
+    path: src/content/posts/images
     categories: [image]
     rename: safe
 
