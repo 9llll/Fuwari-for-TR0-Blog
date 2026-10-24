@@ -52,7 +52,10 @@ let links: NavBarLink[] = navBarConfig.links.map(
 <Layout title={title} banner={banner} keywords={keywords || siteConfig.keywords} description={description || siteConfig.description} lang={lang} setOGTypeArticle={setOGTypeArticle} ogImage={ogImage}>
 
 <!-- 加载动画 -->
-<div id="loading-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-gray-900 transition-opacity duration-500">
+<!-- style 里带了 CSS 动画兜底：即使脚本被拦截 / 报错 / 加载缓慢，
+     遮罩也会在 3 秒后自动淡出并停止拦截点击，绝不会把页面卡在转圈状态。 -->
+<div id="loading-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-gray-900 transition-opacity duration-500"
+     style="animation: loading-overlay-fallback .5s ease 3s forwards;">
     <div class="flex flex-col items-center space-y-4">
         <!-- 旋转圆环 -->
         <div class="relative">
@@ -69,6 +72,16 @@ let links: NavBarLink[] = navBarConfig.links.map(
         </div>
     </div>
 </div>
+
+<style is:global>
+@keyframes loading-overlay-fallback {
+    to {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
+</style>
 
 <!-- Navbar -->
 <slot slot="head" name="head"></slot>
@@ -134,7 +147,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
 <NavMenuPanel links={links}></NavMenuPanel>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+function initLoadingOverlay() {
     const loadingOverlay = document.getElementById('loading-overlay');
     const loadingProgress = document.getElementById('loading-progress');
 
@@ -168,7 +181,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // 兜底：外部资源（如第三方评论样式）加载失败或超时会让 load 事件迟迟不触发，
     // 此时必须主动隐藏遮罩，否则页面会一直停留在加载动画上。
     setTimeout(hideOverlay, 2500);
-});
+}
+
+// 若脚本执行时 DOM 已经就绪，DOMContentLoaded 不会再触发，
+// 直接初始化，否则监听器永远等不到事件（页面就会卡在转圈状态）。
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLoadingOverlay);
+} else {
+    initLoadingOverlay();
+}
 
 
 </script>
