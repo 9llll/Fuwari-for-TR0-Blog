@@ -1,5 +1,5 @@
 ---
-title: YUAN-ERP进销存|ERP软件中小企业福音你值得拥有
+title: 【Windows】YUAN-ERP进销存|ERP软件中小企业福音你值得拥有
 description: Yuan-Erp 是一个把仓库、进销存、权限与报表收进一个 exe 里的"仓库大脑"。
 published: 2026-10-24
 updated: 2026-10-24
@@ -22,7 +22,7 @@ draft: false
 pinned: false
 comment: true
 ---
-::download{name="【🔒加密资源】Yuan-ERP进销存管理系统" url="https://pan.baidu.com/s/1dpWy8gfjF_NKthTgEXtVrQ" desc="离线版ERP系统" size="102 MB" code="8888"}
+::download{name="【🔒加密资源】Yuan-ERP进销存管理系统" url="[https://pan.baidu.com/s/1dpWy8gfjF_NKthTgEXtVrQ](https://pan.baidu.com/s/1dpWy8gfjF_NKthTgEXtVrQ)" desc="离线版ERP系统" size="102 MB" code="8888"}
 
 ![版本截图一](images/erp/erp1.avif)
 
