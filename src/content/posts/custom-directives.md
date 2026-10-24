@@ -1,5 +1,5 @@
 ---
-title: 自定义指令说明：按钮与视频
+title: 【文档】自定义指令说明：按钮与视频
 description: 本文介绍本站新增的两个 Markdown 自定义指令：::btn 链接按钮与 ::video 视频播放器，包含全部参数说明、可用变体与实际效果演示。
 published: 2026-10-06
 updated: 2026-10-06
@@ -37,7 +37,7 @@ comment: true
 
 渲染效果：
 
-::btn{href="https://example.com" text="点我" icon="arrow"}
+::btn{href="[https://example.com](https://example.com)" text="点我" icon="arrow"}
 
 ### 参数说明
 
@@ -67,13 +67,13 @@ comment: true
 
 四个变体放在一起对比：
 
-::btn{href="https://example.com" text="主要" variant="primary" icon="download"}
+::btn{href="[https://example.com](https://example.com)" text="主要" variant="primary" icon="download"}
 
-::btn{href="https://example.com" text="次要" variant="secondary" icon="external"}
+::btn{href="[https://example.com](https://example.com)" text="次要" variant="secondary" icon="external"}
 
-::btn{href="https://example.com" text="描边" variant="outline" icon="arrow"}
+::btn{href="[https://example.com](https://example.com)" text="描边" variant="outline" icon="arrow"}
 
-::btn{href="https://example.com" text="幽灵" variant="ghost" icon="star"}
+::btn{href="[https://example.com](https://example.com)" text="幽灵" variant="ghost" icon="star"}
 
 ### 图标
 
@@ -94,31 +94,31 @@ comment: true
 
 实际效果：
 
-::btn{href="https://example.com" text="下载" variant="secondary" icon="download"}
+::btn{href="[https://example.com](https://example.com)" text="下载" variant="secondary" icon="download"}
 
-::btn{href="https://example.com" text="外部链接" variant="secondary" icon="external"}
+::btn{href="[https://example.com](https://example.com)" text="外部链接" variant="secondary" icon="external"}
 
-::btn{href="https://example.com" text="前往" variant="secondary" icon="arrow"}
+::btn{href="[https://example.com](https://example.com)" text="前往" variant="secondary" icon="arrow"}
 
-::btn{href="https://example.com" text="播放" variant="secondary" icon="play"}
+::btn{href="[https://example.com](https://example.com)" text="播放" variant="secondary" icon="play"}
 
-::btn{href="https://example.com" text="链接" variant="secondary" icon="link"}
+::btn{href="[https://example.com](https://example.com)" text="链接" variant="secondary" icon="link"}
 
-::btn{href="https://example.com" text="完成" variant="secondary" icon="check"}
+::btn{href="[https://example.com](https://example.com)" text="完成" variant="secondary" icon="check"}
 
-::btn{href="https://example.com" text="说明" variant="secondary" icon="info"}
+::btn{href="[https://example.com](https://example.com)" text="说明" variant="secondary" icon="info"}
 
-::btn{href="https://example.com" text="收藏" variant="secondary" icon="star"}
+::btn{href="[https://example.com](https://example.com)" text="收藏" variant="secondary" icon="star"}
 
 ### 其它用法
 
 **新窗口打开**
 
-::btn{href="https://example.com" text="新窗口打开" variant="primary" target="blank" icon="external"}
+::btn{href="[https://example.com](https://example.com)" text="新窗口打开" variant="primary" target="blank" icon="external"}
 
 **独占一行**（移动端尤其有用）
 
-::btn{href="https://example.com" text="这个按钮独占整行" variant="primary" block="true" icon="download"}
+::btn{href="[https://example.com](https://example.com)" text="这个按钮独占整行" variant="primary" block="true" icon="download"}
 
 **指向站内文件**
 
