@@ -9,7 +9,7 @@ tags:
   - 视频
   - 教程
 category:
-  - 教程
+  - 教程文档
 image: images/shipin.avif
 keywords:
   - Markdown 自定义指令，::btn 按钮指令，::video 视频指令，::gallery 图片网格，Markdown 扩展语法教程
