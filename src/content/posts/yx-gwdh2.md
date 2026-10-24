@@ -9,7 +9,7 @@ tags:
   - 游戏源码
   - 虚拟机
 category:
-  - 网游单机
+  - 游戏资源
 image: images/xy2.avif
 keywords:
   - 大话西游2光武单机,大话2虚拟机单机版,大话西游2精修单机端,大话2光武特效单机,大话西游2单机仿官,大话2天演册法门单机,大话西游2单机资源
@@ -27,7 +27,7 @@ comment: true
 
 资源通过网盘分发，点击下方按钮前往，提取码已内置（点击可一键复制）：
 
-::download{name="大话西游2 光武单机全修复精修版（虚拟机版本）" url="https://pan.baidu.com/s/1Q2EEt4JLMG0OLF3I-IQfCw" desc="虚拟机版本完整包，基于官方逻辑真实修正、全系统功能稳定运行" code="561j" size="4 GB" password="1860" hint="联系：golooo@qq.com" icon="zip"}
+::download{name="大话西游2 光武单机全修复精修版（虚拟机版本）" url="[https://pan.baidu.com/s/1Q2EEt4JLMG0OLF3I-IQfCw](https://pan.baidu.com/s/1Q2EEt4JLMG0OLF3I-IQfCw)" desc="虚拟机版本完整包，基于官方逻辑真实修正、全系统功能稳定运行" code="561j" size="4 GB" password="1860" hint="联系：[golooo@qq.com](mailto:golooo@qq.com)" icon="zip"}
 
 ## 一、版本核心信息
 
