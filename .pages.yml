@@ -132,9 +132,14 @@ content:
           # 默认是所见即所得编辑器；::btn / ::video / ::download / ::gallery
           # 这类自定义指令请点右上角切换到「Source / 源码」模式编辑
           switcher: true
-          # 插入图片时存到上面的 post-images 媒体库
+          # 插入图片时用哪个媒体库（决定正文里写入的地址前缀）
           media: post-images
-          path: images
+          # 上传目录：Pages CMS 这里要写**完整仓库路径**，
+          # 文件会存到 src/content/posts/images/xxx.png，
+          # 正文里写入的却是相对路径 ![](images/xxx.png)，
+          # 主题按「文章同级目录」解析，构建时自动转成 AVIF 优化图。
+          path: src/content/posts/images
+          extensions: [avif, webp, jpg, jpeg, png, gif]
           rename: safe
 
   # ---------- 站点设置 ----------
