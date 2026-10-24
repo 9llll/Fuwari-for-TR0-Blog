@@ -47,7 +47,7 @@ comment: true
 
 ---
 
-::download{title="WordPress资源下载主题-onedown" desc="下载来源：百度网盘" size="2 MB" code="8888" url="https://pan.baidu.com/s/1lr9hw-cONw-BpqQnURIKWQ++"}++
+::download{title="WordPress资源下载主题-onedown" desc="下载来源：百度网盘" size="2 MB" code="8888" url="https://pan.baidu.com/s/1lr9hw-cONw-BpqQnURIKWQ"}
 
 ::download{title="WordPress资源下载主题-onedown免授权版" desc="原授权价99元    下载来源：蓝奏云" size="2 MB" code="8888" url="https://8x8.lanzout.com/i3h9K488rhpa"}
 
@@ -509,4 +509,3 @@ onedown/
 
 **Q：可以同时卖源码 + 视频 + 图文吗？** A：可以。每篇文章可以设多个下载项（多个 URL、多种价格），还可以单独设「仅 VIP 可见」和「单独付费」。
 
-  
