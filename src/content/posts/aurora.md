@@ -12,7 +12,13 @@ tags:
   - 应用市场
 category:
   - 网站资源
+image: images/yysc/yysc4.avif
+keywords:
+  - 应用市场源码,网站源码,PHP,MySQL,资源下载
+author: 羡鱼
+series: 网站源码
 seriesOrder: 0
+ogImage: https://raw.githubusercontent.com/9llll/Xy-blog/refs/heads/main/src/content/posts/images/fenxiang.avif
 draft: false
 pinned: false
 comment: true
@@ -20,6 +26,18 @@ comment: true
 一套纯 PHP + MySQL 编写的完整「应用市场 / APP 下载站」整站源码，仿主流应用市场风格，
 
 含前台用户站 + 后台管理系统 + 支付系统，图形化安装向导，宝塔一键部署，开箱即用。
+
+::download{name="【免费资源】PHP+MySQL   APP下载页/应用市场" url="https://pan.baidu.com/s/1uO8lf-YFMGb4_g6sI5NQnA" desc="前台用户站 + 后台管理系统 + 支付系统，图形化安装向导，宝塔一键部署，开箱即用" size="1.1 MB" code="8888" icon="zip"}
+
+![版本截图一](images/yysc/yysc1.avif)
+
+![版本截图一](images/yysc/yysc2.avif)
+
+![版本截图一](images/yysc/yysc3.avif)
+
+![版本截图一](images/yysc/yysc4.avif)
+
+![版本截图一](images/yysc/yysc5.avif)
 
 一、前台功能
 
@@ -69,4 +87,3 @@ VIP 会员：套餐开通，到期时间顺延累加
 
 站点设置：站名、网站 Logo 上传/恢复默认、公告、热搜词、ICP、评论审核开关、站点地址、易支付参数
 
-[https://pan.quark.cn/s/9d75403338fb#/list/share](https://pan.quark.cn/s/9d75403338fb#/list/share)
