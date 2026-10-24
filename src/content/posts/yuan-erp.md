@@ -22,7 +22,7 @@ draft: false
 pinned: false
 comment: true
 ---
-::download{name="【🔒加密资源】Yuan-ERP进销存管理系统" url="https://pan.baidu.com/s/1dpWy8gfjF_NKthTgEXtVrQ＂ desc="离线版ERP系统" size="102.MB" code="8888" password="10058" hint="联系：羡鱼资源"}
+::download{name="【🔒加密资源】Yuan-ERP进销存管理系统" url="https://pan.baidu.com/s/1dpWy8gfjF_NKthTgEXtVrQ" desc="离线版ERP系统" size="102 MB" code="8888" password="10058" hint="联系：羡鱼资源"}
 
 ![版本截图一](images/erp/erp1.avif)
 
