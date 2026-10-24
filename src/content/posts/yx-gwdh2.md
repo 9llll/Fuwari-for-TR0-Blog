@@ -1,5 +1,5 @@
 ---
-title: 大话西游2 光武单机全修复精修版本（虚拟机版本）发布
+title: 【单机】大话西游2 光武单机全修复精修版本（虚拟机版本）发布
 description: 大话西游2 光武单机全修复精修版本的整理记录：基于官方逻辑真实修正、全系统功能稳定运行，含角色养成与战斗系统亮点，以及虚拟机版本网盘下载与提取码。
 published: 2026-10-07
 updated: 2026-10-07
@@ -27,7 +27,7 @@ comment: true
 
 资源通过网盘分发，点击下方按钮前往，提取码已内置（点击可一键复制）：
 
-::download{name="大话西游2 光武单机全修复精修版（虚拟机版本）" url="[https://pan.baidu.com/s/1Q2EEt4JLMG0OLF3I-IQfCw](https://pan.baidu.com/s/1Q2EEt4JLMG0OLF3I-IQfCw)" desc="虚拟机版本完整包，基于官方逻辑真实修正、全系统功能稳定运行" code="561j" size="4 GB" password="1860" hint="联系：[golooo@qq.com](mailto:golooo@qq.com)" icon="zip"}
+::download{name="大话西游2 光武单机全修复精修版（虚拟机版本）" url="https://pan.baidu.com/s/1Q2EEt4JLMG0OLF3I-IQfCw" desc="虚拟机版本完整包，基于官方逻辑真实修正、全系统功能稳定运行" code="561j" size="4 GB" password="1860" hint="联系：golooo@qq.com" icon="zip"}
 
 ## 一、版本核心信息
 
