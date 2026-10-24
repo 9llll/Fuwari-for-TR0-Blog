@@ -49,7 +49,7 @@ comment: true
 12. **一键扩容背包/仓库**（500 格）
 13. **五行修炼一键满级**
 
-![版本截图一](images/xy-xxdz/yx-gw1.avif)
+![版本截图一](images/xy-xxdz/xy-xxdz.avif)
 
 ## 整合包内容
 
