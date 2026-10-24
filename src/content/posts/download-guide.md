@@ -1,5 +1,5 @@
 ---
-title: 下载按钮使用说明
+title: 【文档】下载按钮使用说明
 description: 如何在文章任意位置插入下载按钮，支持网盘提取码与独立密码保护
 published: 2026-10-01
 updated: 2026-10-01
@@ -8,7 +8,7 @@ tags:
   - 教程
   - 指令
 category:
-  - 教程
+  - 教程文档
 image: images/wendang.avif
 keywords:
   - ::download 下载按钮，Markdown 下载指令，羡鱼资源下载按钮，静态站下载按钮，Markdown 资源下载按钮教程
