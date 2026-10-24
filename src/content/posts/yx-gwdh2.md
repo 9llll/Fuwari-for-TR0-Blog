@@ -33,9 +33,9 @@ comment: true
 
 **适用平台**：PC、虚拟机版本
 
-![版本截图一](images/yx-gw1.avif)
-![版本截图二](images/yx-gw2.avif)
-![版本截图三](images/yx-gw3.avif)
+![版本截图一](images/xy2/yx-gw1.avif)
+![版本截图二](images/xy2/yx-gw2.avif)
+![版本截图三](images/xy2/yx-gw3.avif)
 
 ### 版本特性
 
