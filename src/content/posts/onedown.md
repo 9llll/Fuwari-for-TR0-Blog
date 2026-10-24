@@ -1,5 +1,5 @@
 ---
-title: OneDown一款面向资源下载、技术教程、内容资讯类站点的 WordPress 主题
+title: 【WordPress主题】OneDown一款资源下载、技术教程、内容资讯类站点主题
 description: |-
   专为 教程站 · 素材站 · 资源站 · 会员站 · 付费内容站 打造的一体化 WordPress 主题。
 
@@ -47,9 +47,9 @@ comment: true
 
 ---
 
-::download{title="WordPress资源下载主题-onedown" desc="下载来源：百度网盘" size="2 MB" code="8888" url="https://pan.baidu.com/s/1lr9hw-cONw-BpqQnURIKWQ"}
+::download{title="WordPress资源下载主题-onedown" desc="下载来源：百度网盘" size="2 MB" code="8888" url="[https://pan.baidu.com/s/1lr9hw-cONw-BpqQnURIKWQ"}](https://pan.baidu.com/s/1lr9hw-cONw-BpqQnURIKWQ"})
 
-::download{title="WordPress资源下载主题-onedown免授权版" desc="原授权价99元    下载来源：蓝奏云" size="2 MB" password="147852" hint="闲鱼：墨此资源" code="8888" url="https://8x8.lanzout.com/i3h9K488rhpa"}
+::download{title="WordPress资源下载主题-onedown免授权版" desc="原授权价99元    下载来源：蓝奏云" size="2 MB" password="147852" hint="闲鱼：墨此资源" code="8888" url="[https://8x8.lanzout.com/i3h9K488rhpa"}](https://8x8.lanzout.com/i3h9K488rhpa"})
 
 ## **⚡ 核心功能矩阵**
 
